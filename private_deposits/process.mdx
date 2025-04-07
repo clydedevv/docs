@@ -1,0 +1,113 @@
+---
+title: "Private Deposits Process"
+description: "Information about participating in the private deposits phase"
+icon: "vault"
+---
+
+# Private Deposits Process
+
+## Deposit Requirements
+
+<Card title="Key Information for Private Deposits">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <h4>Required Asset</h4>
+      <p>WBTC on Ethereum</p>
+    </div>
+    <div>
+      <h4>Minimum Deposit</h4>
+      <p>0.5 WBTC (~$30,000)</p>
+    </div>
+    <div>
+      <h4>Expected Participants</h4>
+      <p>~10 users with a total of ~$10M</p>
+    </div>
+    <div>
+      <h4>Lock-up Period</h4>
+      <p>3-4 months</p>
+    </div>
+  </div>
+</Card>
+
+## Deposit Process Flow
+
+<Steps>
+  <Step title="Submit Application">
+    Complete the [application form](https://forms.gle/applicationform) to express your interest in participating in the private deposits phase.
+  </Step>
+  <Step title="Complete KYC">
+    After your application is reviewed, you'll receive instructions to complete the Know Your Customer (KYC) verification process.
+  </Step>
+  <Step title="Review Terms">
+    Once KYC is complete, you'll receive the detailed terms and conditions for review and signature.
+  </Step>
+  <Step title="Address Allowlisting">
+    Upon agreement to terms, your Ethereum wallet address will be allowlisted for participation.
+  </Step>
+  <Step title="Deposit WBTC">
+    Using the private deposit interface, deposit your WBTC to mint your initial maxBTC tokens.
+  </Step>
+</Steps>
+
+## Deposit Technical Implementation
+
+The private deposits implementation includes:
+
+1. A dedicated smart contract that:
+   - Accepts WBTC deposits from allowlisted addresses
+   - Mints spdBTC tokens in 1:1 proportion to deposited WBTC
+   - Transfers the WBTC to our secure custody solution
+
+2. A web interface that provides:
+   - Deposit functionality
+   - Real-time balance display
+   - Performance metrics dashboard
+
+## After Depositing
+
+Once you've successfully deposited WBTC and received your spdBTC tokens:
+
+<CardGroup>
+  <Card title="Access Dashboard" icon="chart-line">
+    You'll receive access to a comprehensive reporting dashboard showing performance metrics and your current position.
+  </Card>
+  <Card title="Regular Updates" icon="envelope">
+    Weekly email updates will provide insights into strategy performance and upcoming developments.
+  </Card>
+  <Card title="Early Access" icon="key">
+    Private deposit participants will receive early access to future tokenized strategies and protocol upgrades.
+  </Card>
+</CardGroup>
+
+## Distribution Timeline
+
+<img src="/images/distribution-timeline.png" alt="Distribution Timeline" className="w-full" />
+{/* [IMAGE NEEDED: Add a timeline graphic showing the distribution schedule] */}
+
+The private deposits phase follows this timeline:
+
+1. **April 9, 2025**: Application deadline
+2. **April 15, 2025**: Final participant list finalized
+3. **April 20, 2025**: Deposits open for allowlisted addresses
+4. **May 10, 2025**: Deposits close
+5. **July-August 2025**: Lock-up period ends (depending on deposit date)
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What happens after the lock-up period?">
+    After the lock-up period expires, you'll have the option to withdraw your WBTC (plus any yield accrued) or continue participating in the strategy. In the latter case, your spdBTC tokens will be converted to maxBTC tokens upon the public launch.
+  </Accordion>
+  
+  <Accordion title="Is there a minimum deposit amount?">
+    Yes, the minimum deposit amount is 0.5 WBTC (approximately $30,000 at current prices).
+  </Accordion>
+  
+  <Accordion title="Can I add more WBTC after my initial deposit?">
+    Yes, you can make additional deposits at any time during the deposit window, as long as your address has been allowlisted.
+  </Accordion>
+  
+  <Accordion title="How is my yield calculated?">
+    Yield is calculated in BTC terms, not USD. This means your returns are measured by how much additional BTC you earn, regardless of the USD value of BTC.
+  </Accordion>
+</AccordionGroup>

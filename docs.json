@@ -1,102 +1,84 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
+  "name": "maxBTC Documentation",
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+  "favicon": "favicon.svg",
+  "colors": {
+    "primary": "#F7931A",
+    "light": "#FFAA33",
+    "dark": "#D68116"
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+  "theme": "maple",
+  "topbarLinks": [
+    {
+      "name": "Website",
+      "url": "https://maxbtc.io"
     }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://app.maxbtc.io"
+  },
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.gg/maxbtc"
+    },
+    {
+      "name": "Twitter",
+      "icon": "twitter",
+      "url": "https://twitter.com/maxbtc"
+    }
+  ],
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": ["introduction", "overview/maxbtc_overview"]
+      },
+      {
+        "group": "Private Deposits",
+        "pages": [
+          "private_deposits/overview",
+          "private_deposits/process",
+          "private_deposits/risks"
+        ]
+      },
+      {
+        "group": "Strategy",
+        "pages": [
+          "strategy/overview", 
+          "strategy/technical_details", 
+          "strategy/faq"
+        ]
+      },
+      {
+        "group": "Technical Documentation",
+        "pages": [
+          "technical/architecture",
+          "technical/maxbtc_server",
+          "technical/solana_integration"
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "twitter": "https://twitter.com/maxbtc",
+    "discord": "https://discord.gg/maxbtc"
+  },
+  "modeToggle": {
+    "default": "light"
+  },
+  "hero": {
+    "image": {
+      "light": "/images/hero-light.png",
+      "dark": "/images/hero-dark.png"
+    },
+    "title": "Generate BTC-Denominated Yield",
+    "subtitle": "The first tokenized trading strategy optimized for Bitcoin yield"
   }
 }

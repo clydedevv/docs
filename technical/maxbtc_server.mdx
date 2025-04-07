@@ -1,0 +1,136 @@
+---
+title: "maxBTC Server Architecture"
+description: "Technical overview of the maxBTC server implementation"
+icon: "server"
+---
+
+# maxBTC Server Architecture
+
+This server implements a comprehensive JLP (Jupiter Liquidity Provider) token strategy execution system. The architecture is based on 6 microservices (+1 non-process) that coordinate to manage portfolio exposure, execute trades, and maintain collateral requirements.
+
+## System Overview
+
+The system relies on two primary sources of truth:
+
+1. **On-chain and Exchange Data**: Real-time information from Solana smart contracts, Ethereum Smart contract and Binance exchange accounts
+2. **Persistent Database**: MongoDB collections that track system state, exposures, and execution history
+
+<img src="/images/server-architecture.png" alt="Server Architecture Diagram" />
+
+## Architecture
+
+The server is built in Rust and follows a modular design pattern. Each microservice has a specific responsibility within the strategy execution workflow. Communication between modules happens through shared database state and the global JLP token tracking system. The application uses Axum for HTTP endpoints, asynchronous Tokio tasks for background processes, and direct RPC/WebSocket connections to blockchain networks and exchanges.
+
+## Microservices
+
+<CardGroup cols={2}>
+  <Card title="Input Module" icon="arrow-right-to-bracket" href="/technical/microservices/input">
+    Processes deposits and initializes positions
+  </Card>
+  <Card title="Exposure Management" icon="scale-balanced" href="/technical/microservices/exposure">
+    Handles delta exposure calculations and rebalancing
+  </Card>
+  <Card title="Fee Hedge" icon="money-bill-transfer" href="/technical/microservices/fees">
+    Monitors and hedges protocol fees earned
+  </Card>
+  <Card title="Collateral Rebalancing" icon="arrows-rotate" href="/technical/microservices/rebalancing">
+    Maintains proper collateral ratios
+  </Card>
+  <Card title="Exit Module" icon="arrow-right-from-bracket" href="/technical/microservices/exit">
+    Processes withdrawals and position unwinding
+  </Card>
+  <Card title="Collateral Management" icon="vault" href="/technical/microservices/collateral">
+    Ensures sufficient collateral for open positions
+  </Card>
+</CardGroup>
+
+### Integration Points
+
+<div className="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Microservice</th>
+        <th>CEX</th>
+        <th>SC (ETH)</th>
+        <th>SC (SOL)</th>
+        <th>MongoDB</th>
+        <th>Multi-sig</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Input Module</strong></td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td><strong>Exposure Management</strong></td>
+        <td>✅</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td><strong>Fee Hedge</strong></td>
+        <td>✅</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td><strong>Collateral Management</strong></td>
+        <td>✅</td>
+        <td>-</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><strong>Collateral Rebalancing</strong></td>
+        <td>✅</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td><strong>Exit Module</strong></td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>-</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Security Concerns
+
+<AccordionGroup>
+  <Accordion title="API Key Management">
+    Binance API Keys: IPs are whitelisted and only allowed to trade. Read only keys can work without IP whitelisting for monitoring - Ceffu
+  </Accordion>
+  <Accordion title="Microservice Architecture">
+    Microservices are made mutually exhaustive to each other - sync if required, but can be done with a lag, we do it on timestamp based. Example, input module should be in sync with Cefi-Defi Exposure Management
+  </Accordion>
+  <Accordion title="System Recovery">
+    System reset - should resume based on data from CEX's position and JLP position in the multi-sig
+  </Accordion>
+  <Accordion title="Binance Security">
+    Whitelist address - Multi-sig or the ETH SC, Ceffu setup
+  </Accordion>
+</AccordionGroup>
+
+## Scope for Multi-sig
+
+- Buying capability of JLP
+- Sell Capability of JLP
+- Transfer to CEX
+- Whitelist CEX addresses 

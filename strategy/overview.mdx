@@ -1,0 +1,100 @@
+---
+title: "Strategy Overview"
+description: "Understanding how maxBTC generates BTC-denominated yield"
+icon: "lightbulb"
+---
+
+# maxBTC Strategy Overview
+
+maxBTC is a yield-bearing synthetic asset that represents an effective 1x long BTC position while generating attractive yields through a carefully managed strategy.
+
+## The Core Strategy
+
+<Card title="Yield Generation Approach" className="w-full">
+  <div>
+    The BTC deployed by users is managed in the following way:
+    
+    - **70%** is deployed to [Jupiter JLP pool](https://jup.ag/perps-earn) on Solana
+    - **30%** is deployed as collateral to Binance, where:
+      - Short ETH and SOL positions create delta-neutral exposure to these assets
+      - Leveraged long positions on BTC achieve an effective 1x long BTC exposure
+  </div>
+</Card>
+
+The strategy is automatically rebalanced based on:
+- Changes in JLP pool composition
+- Net open positions of traders within the pool
+
+## Yield Sources
+
+maxBTC generates yield from multiple sources:
+
+<CardGroup cols={3}>
+  <Card title="JLP Pool Fees" icon="coins">
+    75% of fees generated from trading operations (opening/closing positions, price impact, borrowing fees, etc.) are distributed to JLP holders.
+  </Card>
+  <Card title="Rebalancing Arbitrage" icon="scale-balanced">
+    Rebalancing positions when JLP trades at a discount or premium relative to its BTC valuation, typically yielding ~0.5% annually.
+  </Card>
+  <Card title="Funding Rate Dynamics" icon="chart-line">
+    While typically a cost, funding rates can become positive during extreme market conditions, providing additional yield protection.
+  </Card>
+</CardGroup>
+
+## Expected Performance
+
+```mermaid
+graph TD
+    A[Market Conditions] --> B{Bull or Bear?}
+    B -->|Bull Market| C[15-20% APY]
+    B -->|Bear Market| D[10-15% APY]
+    C --> E[Target Average: ~18%]
+    D --> E
+    E --> F[2.5+ Sharpe Ratio]
+```
+
+Based on our 90-day proof of concept with mainnet assets, the maxBTC strategy achieved:
+- **25% average APY** (during a period of high market volatility)
+- **Rolling 30-day average APY** typically fluctuated between 10% and 40%
+
+We expect long-term APY to stabilize in the 10-20% range over time, depending on market conditions.
+
+## Competitive Advantages
+
+<CardGroup cols={2}>
+  <Card title="Higher Yield Potential" icon="arrow-trend-up">
+    2-3x higher APY compared to other BTC-denominated yield opportunities (which typically offer 5-7%)
+  </Card>
+  <Card title="Native BTC Yield" icon="bitcoin-sign">
+    Unlike other solutions that only provide points or governance tokens, maxBTC delivers yield directly in BTC terms
+  </Card>
+  <Card title="DeFi Composability" icon="puzzle-piece">
+    maxBTC can be used as collateral to generate additional yield or hedging opportunities
+  </Card>
+  <Card title="Low Negative APR Risk" icon="shield-halved">
+    Strategy design provides significant protection against negative returns
+  </Card>
+</CardGroup>
+
+## Market Opportunity
+
+<img src="/images/btc-yield-market.png" alt="BTC Yield Market" className="w-full" />
+{/* [IMAGE NEEDED: A comparison chart of BTC yield options] */}
+
+Current on-chain BTC yield market is over $4B, including:
+- $3.5B wBTC market on Aave
+- $200M+ Pendle BTC pools
+- Other smaller platforms
+
+Existing BTC yield options are limited:
+- BTC LRTs offer only points-based yield
+- BTC vaults generate up to 5-7% APY but lack composability
+- Both options provide relatively low APR compared to maxBTC
+
+## Target Users
+
+The maxBTC strategy is particularly suitable for:
+- BTC whales who are active in DeFi
+- Liquid funds looking for enhanced BTC-denominated returns 
+- Long-term BTC holders seeking additional yield
+- DeFi users wanting to use yield-bearing BTC as collateral 

@@ -1,0 +1,142 @@
+---
+title: "Private Deposits Implementation"
+description: "Technical implementation details of the private deposits phase"
+icon: "code"
+---
+
+# Private Deposits Technical Implementation
+
+This document details the technical implementation of the private deposits (PD) phase of maxBTC.
+
+## Smart Contract Design
+
+The Ethereum smart contract for private deposits has been designed with simplicity and security in mind. It provides the following functionality:
+
+```solidity
+// Simplified representation of the contract
+contract StructuredPrivateDeposits {
+    // Token to be received by users
+    ERC20 public spdBTC;
+    
+    // Token accepted for deposits
+    ERC20 public WBTC;
+    
+    // Custody address where deposits are forwarded
+    address public custodyAddress;
+    
+    // Owner/admin multisig
+    address public owner;
+    
+    // Mapping of allowed addresses
+    mapping(address => bool) public allowlist;
+    
+    // Function to deposit WBTC and mint spdBTC
+    function deposit(uint256 amount) external {
+        require(allowlist[msg.sender], "Not on allowlist");
+        // Transfer WBTC from user
+        WBTC.transferFrom(msg.sender, address(this), amount);
+        
+        // Mint spdBTC to user
+        spdBTC.mint(msg.sender, amount);
+        
+        // Forward WBTC to custody
+        WBTC.transfer(custodyAddress, amount);
+    }
+    
+    // Admin functions for allowlist management
+    function addToAllowlist(address user) external onlyOwner {
+        allowlist[user] = true;
+    }
+    
+    function removeFromAllowlist(address user) external onlyOwner {
+        allowlist[user] = false;
+    }
+}
+```
+
+## UI Restriction Mechanics
+
+<img src="/images/ui-auth-flow.png" alt="UI Authentication Flow" />
+{/* [IMAGE NEEDED: Add a diagram showing the authentication flow] */}
+
+Since UI restrictions won't completely protect against unauthorized depositors (due to the nature of public blockchains), we've implemented a multi-layered approach:
+
+1. **Allowlist on Smart Contract**: Only whitelisted addresses can interact with the deposit function
+2. **Cloudflare Email Gate**: Restricts access to the UI based on approved email addresses
+3. **KYC Integration**: All participants must complete KYC verification before being added to the allowlist
+
+## Technical Considerations for WBTC
+
+We've chosen to accept only WBTC for several reasons:
+
+<AccordionGroup>
+  <Accordion title="Standardization">
+    Using a single asset type simplifies the contract design and reduces security risks
+  </Accordion>
+  
+  <Accordion title="Liquidity">
+    WBTC has significant liquidity on Ethereum, making it easier for participants to acquire
+  </Accordion>
+  
+  <Accordion title="Legal Considerations">
+    We cannot accept direct BTC deposits for legal reasons, so we use the widely-accepted wrapped version
+  </Accordion>
+  
+  <Accordion title="Compatibility">
+    WBTC integrates well with the rest of our infrastructure, including Binance and custody solutions
+  </Accordion>
+</AccordionGroup>
+
+## BBTC Consideration
+
+We considered using BBTC (Binance-Wrapped BTC) for clients who already have BTC on Binance, as this could save on fees/slippage of converting WBTC to BTC on Binance. However, we decided against it for several reasons:
+
+1. **Additional Development**: It would require additional smart contract development, which is challenging given the tight timeline
+2. **UI Complexity**: The UI would need to support two different assets instead of one
+3. **Cost Distribution**: Creates an imbalance where BBTC depositors subsidize WBTC depositors
+
+## Monitoring Implementation
+
+<img src="/images/monitoring-dashboard.png" alt="Monitoring Dashboard" />
+{/* [IMAGE NEEDED: Add a screenshot or mockup of the monitoring dashboard] */}
+
+Our monitoring system focuses on two primary risk scenarios:
+
+1. **Funds Security**: Constant monitoring of balances across all platforms
+2. **Liquidation Risk**: Real-time monitoring of position health and collateral levels
+
+The monitoring dashboard provides:
+- Real-time position status
+- Collateral levels and safety margins
+- Historical performance metrics
+- Alert systems for potentially dangerous market movements
+
+## Technical Timeline
+
+The development and deployment process follows this timeline:
+
+<Steps>
+  <Step title="Smart Contract Development & Testing">
+    Development of the Ethereum contract for WBTC deposits (Completed)
+  </Step>
+  <Step title="Security Audit">
+    Comprehensive audit by Oak Security (In Progress)
+  </Step>
+  <Step title="UI Development">
+    Creation of the deposit interface and dashboard (In Progress)
+  </Step>
+  <Step title="Integration Testing">
+    End-to-end testing of deposit flows and monitoring systems
+  </Step>
+  <Step title="Deployment & Verification">
+    Deployment to mainnet and final verification
+  </Step>
+</Steps>
+
+## Integration with maxBTC
+
+At the end of the private deposits phase, we will facilitate a migration to the full maxBTC token. This will involve:
+
+1. Creating a contract that allows for exchanging spdBTC for maxBTC
+2. Ensuring all underlying positions are properly transferred to the maxBTC system
+3. Providing a seamless transition for users who wish to continue with the strategy 

@@ -1,0 +1,131 @@
+---
+title: "Strategy FAQ"
+description: "Frequently asked questions about the maxBTC strategy"
+icon: "circle-question"
+---
+
+# Strategy FAQ
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="What is the difference between maxBTC's displayed APY and Jupiter's displayed APY?">
+    There are three different APY figures to consider:
+
+    1. **maxBTC Target APY**: 10% (bear market) to 20% (bull market)
+       - This is based on market conditions, reflecting an average across different market scenarios
+
+    2. **JLP Website Displayed APY**: Often higher (e.g., 40%+)
+       - This reflects returns on the invested capital only
+       - Since only about 70% of capital is deployed and 30% is reserved for hedging, there is capital inefficiency
+       - Funding fees must still be subtracted from this figure
+
+    3. **Realized APY**: What you actually receive
+       - This accounts for all costs, including funding fees
+       - Calculated based on BTC-denominated returns
+
+    The realized APY you observe will typically be lower than the figure shown on the JLP interface because not all principal is deployed at once and various fees reduce the net returns.
+  </Accordion>
+
+  <Accordion title="Is the JLP Pool APY denominated in USD or BTC terms?">
+    The JLP Pool APY is **denominated in USD terms** on the Jupiter platform.
+
+    For investor convenience, **we translate returns back to BTC** (i.e., how much BTC you effectively accumulate). This approach gives maxBTC holders a clearer picture of their returns in terms of the asset they value.
+  </Accordion>
+
+  <Accordion title="What causes fluctuations in the NAV?">
+    There are several sources that can cause fluctuations in the net asset value (NAV):
+
+    1. **Market-Driven Price of JLP**: The JLP token itself can fluctuate in value based on market conditions. This volatility introduces "noise" to the NAV.
+
+    2. **Funding Rate Dynamics**:
+       - If the funding fee is negative, the strategy can actually **earn** from the BTC long hedge on CEX, and from the borrow fee on JLP.
+       - Under typical circumstances, the strategy is **net long**, meaning we often **pay** more in funding fees than we earn, but still aim for a net positive return due to JLP fees and other mechanisms.
+    
+    We display the transparent market value so investors can see actual fluctuations rather than a smoothed value.
+  </Accordion>
+
+  <Accordion title="What is VPS shown in the reporting dashboard?">
+    VPS (Value Per Share) is essentially an **accounting tool** similar to how an ETF or index fund uses a "price per share."
+
+    It helps track each investor's proportional ownership in the strategy and how it changes over time. As the strategy generates yield, the VPS increases, reflecting the growth in the underlying value of each share.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="How is the position actually hedged?">
+    The strategy hedges underlying tokens in JLP by taking offsetting positions on centralized exchanges (CEX), based on:
+
+    1. The actual underlying tokens in the JLP pool
+    2. The net position taken by traders against the JLP pool
+
+    We do not hedge based on target weightage given by Jupiter, but rather on the actual token composition and trader positioning. This approach ensures more accurate hedging that adapts to real market conditions.
+
+    In case of market crashes, the strategy is designed to maintain appropriate hedge ratios through automated rebalancing systems.
+  </Accordion>
+
+  <Accordion title="Do you have a breakdown of the strategy's APY by components?">
+    While we don't maintain a real-time breakdown of each component's contribution to the APY, the approximate breakdown is:
+
+    - **JLP Fees**: The largest component, typically contributing 15-35% depending on market conditions
+    - **Funding Rates**: Usually a cost of 1-4%, but can occasionally be positive during extreme market conditions
+    - **Hedging/Rebalancing**: Typically contributes around 0.5%
+
+    The net result is the target APY range of 10-20% depending on market conditions.
+  </Accordion>
+
+  <Accordion title="What are the fees the strategy is consuming?">
+    The strategy incurs several types of fees:
+
+    1. **Trading Fees**: When rebalancing positions or executing hedges
+    2. **Funding Rates**: Paid on perpetual futures positions
+    3. **Withdrawal Fees**: When removing liquidity from the JLP pool
+    4. **Operational Costs**: API calls, gas fees, etc.
+
+    At current scale, operational costs are negligible compared to the total strategy returns. The main cost factors are trading fees and funding rates, which are already accounted for in the reported APY figures.
+  </Accordion>
+
+  <Accordion title="What is the strategy's scalability limit?">
+    The strategy's scaling is limited by several factors:
+
+    1. **JLP Pool Size**: Currently $1.75B on Jupiter, which can be further increased by introducing new perps markets
+    2. **Liquidation Risk Management**: With the proposed 70/30 split, the scale is limited at approximately $200M
+    3. **JLP Position Liquidity**: The ability to liquidate the JLP position quickly if needed
+
+    We can increase capacity by:
+    - Shifting to a more conservative split (closer to 50/50) at the cost of reduced APY
+    - Introducing additional perps markets to diversify liquidity sources
+    - Implementing more sophisticated hedging techniques as the strategy matures
+  </Accordion>
+</AccordionGroup>
+
+## Risk Questions
+
+<AccordionGroup>
+  <Accordion title="What is the worst-case scenario if the market crashes?">
+    In a worst-case market crash scenario:
+
+    1. If BTC drops by approximately 45% **before rebalancing can occur**, there is a theoretical liquidation risk in the 70/30 deployment model
+    2. If funding rates become extremely negative, this could further impact returns
+
+    However, several factors mitigate these risks:
+    - Automated rebalancing systems that trigger well before liquidation thresholds
+    - Historical data shows BTC has never experienced a weekly drop exceeding 33.52% since perpetual listing on Binance in 2019
+    - The ability to adjust deployment ratios if market conditions warrant it
+
+    Even in extreme market conditions, principal protection remains a key focus of the strategy design.
+  </Accordion>
+
+  <Accordion title="How robust is the infrastructure?">
+    The strategy relies on a robust technical infrastructure with multiple redundancies:
+
+    1. **Automated Monitoring Systems**: Continuously track positions, collateral levels, and market conditions
+    2. **Multi-Signature Security**: Critical operations require approval from multiple trusted parties
+    3. **Backup Execution Pathways**: Alternative methods to execute critical operations if primary systems fail
+    4. **Regular System Audits**: Ongoing review of system performance and security
+
+    The infrastructure has been designed with security and reliability as primary considerations, incorporating lessons learned from years of experience in DeFi operations.
+  </Accordion>
+</AccordionGroup> 
