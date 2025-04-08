@@ -6,22 +6,20 @@ icon: "server"
 
 # maxBTC Server Architecture
 
-This server implements a comprehensive JLP (Jupiter Liquidity Provider) token strategy execution system. The architecture is based on 6 microservices (+1 non-process) that coordinate to manage portfolio exposure, execute trades, and maintain collateral requirements.
+This server implements a comprehensive JLP (Jupiter Liquidity Provider) token strategy execution system. The architecture is based on microservices that coordinate to manage portfolio exposure, execute trades, and maintain collateral requirements.
 
 ## System Overview
 
 The system relies on two primary sources of truth:
 
-1. **On-chain and Exchange Data**: Real-time information from Solana smart contracts, Ethereum Smart contract and Binance exchange accounts
-2. **Persistent Database**: MongoDB collections that track system state, exposures, and execution history
+1. **On-chain and Exchange Data**: Real-time information from blockchain networks and exchanges
+2. **Persistent Database**: MongoDB collections that track system state and history
 
 <img src="/images/server-architecture.png" alt="Server Architecture Diagram" />
 
-## Architecture
-
-The server is built in Rust and follows a modular design pattern. Each microservice has a specific responsibility within the strategy execution workflow. Communication between modules happens through shared database state and the global JLP token tracking system. The application uses Axum for HTTP endpoints, asynchronous Tokio tasks for background processes, and direct RPC/WebSocket connections to blockchain networks and exchanges.
-
 ## Microservices
+
+The server consists of 6 core microservices plus auxiliary components:
 
 <CardGroup cols={2}>
   <Card title="Input Module" icon="arrow-right-to-bracket" href="/technical/microservices/input">
@@ -44,72 +42,7 @@ The server is built in Rust and follows a modular design pattern. Each microserv
   </Card>
 </CardGroup>
 
-### Integration Points
-
-<div className="overflow-x-auto">
-  <table>
-    <thead>
-      <tr>
-        <th>Microservice</th>
-        <th>CEX</th>
-        <th>SC (ETH)</th>
-        <th>SC (SOL)</th>
-        <th>MongoDB</th>
-        <th>Multi-sig</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Input Module</strong></td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>Exposure Management</strong></td>
-        <td>✅</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>Fee Hedge</strong></td>
-        <td>✅</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>Collateral Management</strong></td>
-        <td>✅</td>
-        <td>-</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td><strong>Collateral Rebalancing</strong></td>
-        <td>✅</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-      </tr>
-      <tr>
-        <td><strong>Exit Module</strong></td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+For detailed technical implementation, security considerations, and integration specifics, see the [Detailed Technical Architecture](/technical/architecture) documentation.
 
 ## Security Concerns
 

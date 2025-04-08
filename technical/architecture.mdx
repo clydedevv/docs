@@ -1,21 +1,21 @@
 ---
-title: "maxBTC Technical Architecture"
-description: "Detailed technical architecture of the maxBTC strategy implementation"
+title: "Detailed Technical Architecture"
+description: "In-depth technical implementation details of the maxBTC strategy"
 icon: "sitemap"
 ---
 
-# maxBTC Technical Architecture
+# Detailed Technical Architecture
 
-This document details the comprehensive JLP (Jupiter Liquidity Provider) token strategy execution system. The architecture is based on microservices that coordinate to manage portfolio exposure, execute trades, and maintain collateral requirements.
+This document provides the implementation details for the maxBTC strategy execution system. For a high-level overview, see the [Server Architecture](/technical/maxbtc_server) page.
 
-## System Overview
+## Implementation Details
 
-The server architecture consists of 6 microservices plus one non-process component that coordinate to execute the strategy. The system relies on two primary sources of truth:
+The server is built in Rust and follows a modular design pattern. Communication between modules happens through shared database state and the global JLP token tracking system. The application uses:
 
-1. **On-chain and Exchange Data**: Real-time information from Solana smart contracts, Ethereum Smart contract, and Binance exchange accounts
-2. **Persistent Database**: MongoDB collections that track system state, exposures, and execution history
+- **Axum** for HTTP endpoints
+- **Tokio** for asynchronous background processes
+- **Direct RPC/WebSocket** connections to blockchain networks and exchanges
 
-<img src="/images/server-architecture.png" alt="Server Architecture Diagram" />
 {/* Alternative Mermaid diagram if needed: */}
 ```mermaid
 graph TD
@@ -34,51 +34,6 @@ graph TD
     MS[Multi-sig SOL] <--> Server
     Server <--> CEX
 ```
-
-## Microservices
-
-<CardGroup cols={2}>
-  <Card title="Input Module" icon="arrow-right-to-bracket">
-    - Provides an estimate of Buy price for the system
-    - Listens to any deposit signal and updates Smart Contract
-    - Processes initial configuration
-    - Converts 70% of assets to USDC for JLP buying
-    - Handles JLP position entry in tranches
-  </Card>
-
-  <Card title="Exposure Management" icon="scale-balanced">
-    - Runs delta exposure calculations every minute
-    - Executes trades to close delta mismatches
-    - Updates main documentation and logs execution details
-  </Card>
-
-  <Card title="Fee Hedge" icon="money-bill-transfer">
-    - Handles revenue rebalancing
-    - Sells JLP earnings to maintain target exposure
-    - Manages JLP/BTC price impact
-  </Card>
-
-  <Card title="Reporting" icon="chart-line">
-    - Calculates NAV based on all positions
-    - Determines hourly and daily NAV changes
-    - Calculates rolling APY at different intervals
-    - Generates comprehensive reporting documentation
-  </Card>
-
-  <Card title="Exit Module" icon="door-open">
-    - Provides estimate of exit slippage
-    - Monitors smart contract for withdrawal instructions
-    - Sells JLP positions and unwinds hedges
-    - Transfers assets to exchanges and sends required assets to smart contract
-  </Card>
-
-  <Card title="Collateral Management" icon="vault">
-    - Ensures USDT balance remains above 1% of open positions
-    - Executes BTC sales for USDT when necessary
-    - Maintains delta neutrality by adjusting hedge positions
-    - Creates and updates reporting documentation
-  </Card>
-</CardGroup>
 
 ## Integration Matrix
 
@@ -147,6 +102,51 @@ graph TD
   </table>
 </div>
 
+## Microservice Details
+
+<CardGroup cols={1}>
+  <Card title="Input Module" icon="arrow-right-to-bracket">
+    - Provides an estimate of Buy price for the system
+    - Listens to any deposit signal and updates Smart Contract
+    - Processes initial configuration
+    - Converts 70% of assets to USDC for JLP buying
+    - Handles JLP position entry in tranches
+  </Card>
+
+  <Card title="Exposure Management" icon="scale-balanced">
+    - Runs delta exposure calculations every minute
+    - Executes trades to close delta mismatches
+    - Updates main documentation and logs execution details
+  </Card>
+
+  <Card title="Fee Hedge" icon="money-bill-transfer">
+    - Handles revenue rebalancing
+    - Sells JLP earnings to maintain target exposure
+    - Manages JLP/BTC price impact
+  </Card>
+
+  <Card title="Reporting" icon="chart-line">
+    - Calculates NAV based on all positions
+    - Determines hourly and daily NAV changes
+    - Calculates rolling APY at different intervals
+    - Generates comprehensive reporting documentation
+  </Card>
+
+  <Card title="Exit Module" icon="door-open">
+    - Provides estimate of exit slippage
+    - Monitors smart contract for withdrawal instructions
+    - Sells JLP positions and unwinds hedges
+    - Transfers assets to exchanges and sends required assets to smart contract
+  </Card>
+
+  <Card title="Collateral Management" icon="vault">
+    - Ensures USDT balance remains above 1% of open positions
+    - Executes BTC sales for USDT when necessary
+    - Maintains delta neutrality by adjusting hedge positions
+    - Creates and updates reporting documentation
+  </Card>
+</CardGroup>
+
 ## Security Considerations
 
 <AccordionGroup>
@@ -173,7 +173,7 @@ The multi-sig is responsible for critical operations:
 - Transfer to CEX
 - Whitelist CEX addresses
 
-## Implementation Details
+## Codebase Organization
 
 The codebase is organized into logical modules:
 
@@ -184,4 +184,4 @@ The codebase is organized into logical modules:
 - **src/exposure_management/**: Core strategy execution logic
 - **src/execution/**: Trade execution and order management
 
-The server uses a shared global state for JLP token tracking (JLP_TOKENS) which acts as an in-memory cache that is periodically verified against on-chain data. 
+The server uses a shared global state for JLP token tracking (JLP_TOKENS) which acts as an in-memory cache that is periodically verified against on-chain data.
