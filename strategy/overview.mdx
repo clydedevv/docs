@@ -1,43 +1,23 @@
 ---
-title: "Strategy Overview"
-description: "Understanding how maxBTC generates BTC-denominated yield"
+title: "maxBTC Strategy Overview"
+description: "maxBTC is a yield-bearing synthetic asset that represents an effective 1x long BTC position while generating attractive yields through a carefully managed strategy.
+"
 icon: "lightbulb"
 ---
 
-# maxBTC Strategy Overview
+## Where Does the Yield Come From?
 
-maxBTC is a yield-bearing synthetic asset that represents an effective 1x long BTC position while generating attractive yields through a carefully managed strategy.
-
-## The Core Strategy
-
-<Card title="Yield Generation Approach" className="w-full">
-  <div>
-    The BTC deployed by users is managed in the following way:
-    
-    - **70%** is deployed to [Jupiter JLP pool](https://jup.ag/perps-earn) on Solana
-    - **30%** is deployed as collateral to Binance, where:
-      - Short ETH and SOL positions create delta-neutral exposure to these assets
-      - Leveraged long positions on BTC achieve an effective 1x long BTC exposure
-  </div>
-</Card>
-
-The strategy is automatically rebalanced based on:
-- Changes in JLP pool composition
-- Net open positions of traders within the pool
-
-## Yield Sources
-
-maxBTC generates yield from multiple sources:
+maxBTC generates yield from three primary sources:
 
 <CardGroup cols={3}>
   <Card title="JLP Pool Fees" icon="coins">
-    75% of fees generated from trading operations (opening/closing positions, price impact, borrowing fees, etc.) are distributed to JLP holders.
+    75% of fees generated from trading operations (opening/closing positions, price impact, borrowing fees, etc.) are distributed to JLP holders, typically contributing 15-35% of total yield.
   </Card>
   <Card title="Rebalancing Arbitrage" icon="scale-balanced">
     Rebalancing positions when JLP trades at a discount or premium relative to its BTC valuation, typically yielding ~0.5% annually.
   </Card>
-  <Card title="Funding Rate Dynamics" icon="chart-line">
-    While typically a cost, funding rates can become positive during extreme market conditions, providing additional yield protection.
+  <Card title="Funding Rate Management" icon="chart-line">
+    Usually a cost of 1-4%, but can occasionally be positive during extreme market conditions, providing additional yield protection.
   </Card>
 </CardGroup>
 
@@ -49,42 +29,118 @@ Based on our 90-day proof of concept with mainnet assets, the maxBTC strategy ac
 
 We expect long-term APY to stabilize in the 10-20% range over time, depending on market conditions.
 
-## Competitive Advantages
+## Market Opportunity (Placeholder graphic)
 
-<CardGroup cols={2}>
-  <Card title="Higher Yield Potential" icon="arrow-trend-up">
-    2-3x higher APY compared to other BTC-denominated yield opportunities (which typically offer 5-7%)
+<Card title="$4B+ Current On-Chain BTC Yield Market" className="w-full mb-6">
+  <div className="space-y-6">
+    <div>
+      <div className="flex justify-between mb-1">
+        <span className="font-medium">wBTC on Aave</span>
+        <span className="font-medium">$3.5B</span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-6 dark:bg-gray-700">
+        <div className="bg-blue-600 h-6 rounded-full" style={{ width: '87.5%' }}></div>
+      </div>
+    </div>
+    
+    <div>
+      <div className="flex justify-between mb-1">
+        <span className="font-medium">Pendle BTC pools</span>
+        <span className="font-medium">$200M+</span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-6 dark:bg-gray-700">
+        <div className="bg-green-500 h-6 rounded-full" style={{ width: '5%' }}></div>
+      </div>
+    </div>
+    
+    <div>
+      <div className="flex justify-between mb-1">
+        <span className="font-medium">Other platforms</span>
+        <span className="font-medium">$300M+</span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-6 dark:bg-gray-700">
+        <div className="bg-purple-500 h-6 rounded-full" style={{ width: '7.5%' }}></div>
+      </div>
+    </div>
+  </div>
+</Card>
+
+### Current Market Limitations
+
+<CardGroup cols={3}>
+  <Card title="Points vs Real Yield" icon="ticket">
+    <div className="text-sm">
+      Most BTC LRTs offer only points-based yield with uncertain long-term value rather than actual BTC yield.
+    </div>
   </Card>
-  <Card title="Native BTC Yield" icon="bitcoin-sign">
-    Unlike other solutions that only provide points or governance tokens, maxBTC delivers yield directly in BTC terms
+  <Card title="Low Returns" icon="chart-line-down">
+    <div className="text-sm">
+      Existing options typically generate only 4-7% APY, significantly lower than maxBTC's target range.
+    </div>
   </Card>
-  <Card title="DeFi Composability" icon="puzzle-piece">
-    maxBTC can be used as collateral to generate additional yield or hedging opportunities
-  </Card>
-  <Card title="Low Negative APR Risk" icon="shield-halved">
-    Strategy design provides significant protection against negative returns
+  <Card title="Limited Composability" icon="puzzle-piece">
+    <div className="text-sm">
+      Many high-yield BTC options lack DeFi composability, restricting their use as collateral or in other DeFi applications.
+    </div>
   </Card>
 </CardGroup>
 
-## Market Opportunity
+### How maxBTC Overcomes These Limitations
 
-<img src="/images/btc-yield-market.png" alt="BTC Yield Market" className="w-full" />
-{/* [IMAGE NEEDED: A comparison chart of BTC yield options] */}
-
-Current on-chain BTC yield market is over $4B, including:
-- $3.5B wBTC market on Aave
-- $200M+ Pendle BTC pools
-- Other smaller platforms
-
-Existing BTC yield options are limited:
-- BTC LRTs offer only points-based yield
-- BTC vaults generate up to 5-7% APY but lack composability
-- Both options provide relatively low APR compared to maxBTC
+<AccordionGroup>
+  <Accordion title="Higher Real Yield Potential" icon="arrow-trend-up">
+    <p>2-3x higher APY compared to other BTC-denominated yield opportunities (which typically offer 5-7%)</p>
+  </Accordion>
+  
+  <Accordion title="BTC-Denominated Returns" icon="bitcoin-sign">
+    <p>Unlike other solutions that only provide points or governance tokens, maxBTC delivers yield directly in BTC terms</p>
+  </Accordion>
+  
+  <Accordion title="DeFi Composability" icon="puzzle-piece">
+    <p>maxBTC can be used as collateral to generate additional yield or hedging opportunities</p>
+  </Accordion>
+  
+  <Accordion title="Low Negative APR Risk" icon="shield-halved">
+    <p>Strategy design provides significant protection against negative returns</p>
+  </Accordion>
+</AccordionGroup>
 
 ## Target Users
 
-The maxBTC strategy is particularly suitable for:
-- BTC whales who are active in DeFi
-- Liquid funds looking for enhanced BTC-denominated returns 
-- Long-term BTC holders seeking additional yield
-- DeFi users wanting to use yield-bearing BTC as collateral 
+<div className="grid grid-cols-2 gap-6 mt-6">
+  <Card className="border-2 border-blue-200 dark:border-blue-800">
+    <div className="flex items-center mb-4">
+      <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg mr-3">
+        <span className="text-blue-600 dark:text-blue-300">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </span>
+      </div>
+      <h3 className="text-xl font-semibold">BTC Whales & Institutional Investors</h3>
+    </div>
+    <ul className="list-disc pl-5 space-y-1">
+      <li>High-net-worth BTC holders looking for yield</li>
+      <li>Funds and financial institutions seeking BTC-denominated returns</li>
+      <li>Family offices with significant BTC allocations</li>
+    </ul>
+  </Card>
+  
+  <Card className="border-2 border-purple-200 dark:border-purple-800">
+    <div className="flex items-center mb-4">
+      <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg mr-3">
+        <span className="text-purple-600 dark:text-purple-300">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </span>
+      </div>
+      <h3 className="text-xl font-semibold">DeFi Enthusiasts & Yield Seekers</h3>
+    </div>
+    <ul className="list-disc pl-5 space-y-1">
+      <li>Active DeFi users seeking additional yield on BTC holdings</li>
+      <li>Long-term BTC holders looking for passive income</li>
+      <li>Users who want to use yield-bearing BTC as collateral</li>
+    </ul>
+  </Card>
+</div> 

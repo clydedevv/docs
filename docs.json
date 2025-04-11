@@ -41,19 +41,19 @@
         "pages": ["introduction", "overview/maxbtc_overview"]
       },
       {
-        "group": "Private Deposits",
-        "pages": [
-          "private_deposits/overview",
-          "private_deposits/process",
-          "private_deposits/risks"
-        ]
-      },
-      {
         "group": "Strategy",
         "pages": [
           "strategy/overview", 
           "strategy/technical_details", 
           "strategy/faq"
+        ]
+      },
+      {
+        "group": "Private Deposits",
+        "pages": [
+          "private_deposits/overview",
+          "private_deposits/process",
+          "private_deposits/risks"
         ]
       },
       {
