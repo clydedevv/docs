@@ -1,22 +1,33 @@
 ---
-title: "Detailed Technical Architecture"
-description: "In-depth technical implementation details of the maxBTC strategy"
-icon: "sitemap"
+title: "Technical Architecture"
+icon: "microchip"
 ---
+This section provides technical details about maxBTC's implementation across different blockchains, security considerations, and system architecture.
 
-# Detailed Technical Architecture
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+  <Card title="Blockchain Integrations" icon="link-simple" href="/technical/blockchain_integrations">
+    Implementation details for Ethereum, Solana, and cross-chain flows including asset management across blockchains
+  </Card>
+  <Card title="Security Model" icon="shield-halved" href="/technical/security">
+    Security considerations, multisig implementations, and comprehensive risk management controls
+  </Card>
+</div>
 
-This document provides the implementation details for the maxBTC strategy execution system. For a high-level overview, see the [Server Architecture](/technical/maxbtc_server) page.
+## Implementation Overview
 
-## Implementation Details
+The maxBTC server is built in Rust and follows a modular design pattern. Communication between modules happens through shared database state and the global JLP token tracking system. 
 
-The server is built in Rust and follows a modular design pattern. Communication between modules happens through shared database state and the global JLP token tracking system. The application uses:
+### Key Technologies
 
-- **Axum** for HTTP endpoints
+The application is built with:
+
+- **Axum** for HTTP endpoints and API
 - **Tokio** for asynchronous background processes
+- **MongoDB** for persistent state management
 - **Direct RPC/WebSocket** connections to blockchain networks and exchanges
 
-{/* Alternative Mermaid diagram if needed: */}
+## System Architecture Diagram
+
 ```mermaid
 graph TD
     subgraph Server
@@ -35,7 +46,7 @@ graph TD
     Server <--> CEX
 ```
 
-## Integration Matrix
+## Microservice Integration Matrix
 
 <div className="overflow-x-auto">
   <table className="w-full mt-4">
@@ -52,128 +63,65 @@ graph TD
     <tbody>
       <tr>
         <td><strong>Input Module</strong></td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
         <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
       </tr>
       <tr>
         <td><strong>Cefi-Defi Exposure</strong></td>
-        <td>✅</td>
+        <td>✓</td>
         <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
       </tr>
       <tr>
         <td><strong>Fee Hedge</strong></td>
-        <td>✅</td>
+        <td>✓</td>
         <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
       </tr>
       <tr>
         <td><strong>Collateral Management</strong></td>
-        <td>✅</td>
+        <td>✓</td>
         <td>-</td>
         <td>-</td>
-        <td>✅</td>
+        <td>✓</td>
         <td>-</td>
       </tr>
       <tr>
         <td><strong>Collateral Rebalancing</strong></td>
-        <td>✅</td>
+        <td>✓</td>
         <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
       </tr>
       <tr>
         <td><strong>Exit Module</strong></td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
         <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>✓</td>
+        <td>✓</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-## Microservice Details
+<div className="text-sm text-gray-500 mt-2">
+  This matrix shows which external systems each microservice integrates with.
+</div>
 
-<CardGroup cols={1}>
-  <Card title="Input Module" icon="arrow-right-to-bracket">
-    - Provides an estimate of Buy price for the system
-    - Listens to any deposit signal and updates Smart Contract
-    - Processes initial configuration
-    - Converts 70% of assets to USDC for JLP buying
-    - Handles JLP position entry in tranches
-  </Card>
+<Note>
+  For security considerations including API key management, multisig implementation, and system recovery details, see the [Security Model](/technical/security) documentation.
+</Note>
 
-  <Card title="Exposure Management" icon="scale-balanced">
-    - Runs delta exposure calculations every minute
-    - Executes trades to close delta mismatches
-    - Updates main documentation and logs execution details
-  </Card>
-
-  <Card title="Fee Hedge" icon="money-bill-transfer">
-    - Handles revenue rebalancing
-    - Sells JLP earnings to maintain target exposure
-    - Manages JLP/BTC price impact
-  </Card>
-
-  <Card title="Reporting" icon="chart-line">
-    - Calculates NAV based on all positions
-    - Determines hourly and daily NAV changes
-    - Calculates rolling APY at different intervals
-    - Generates comprehensive reporting documentation
-  </Card>
-
-  <Card title="Exit Module" icon="door-open">
-    - Provides estimate of exit slippage
-    - Monitors smart contract for withdrawal instructions
-    - Sells JLP positions and unwinds hedges
-    - Transfers assets to exchanges and sends required assets to smart contract
-  </Card>
-
-  <Card title="Collateral Management" icon="vault">
-    - Ensures USDT balance remains above 1% of open positions
-    - Executes BTC sales for USDT when necessary
-    - Maintains delta neutrality by adjusting hedge positions
-    - Creates and updates reporting documentation
-  </Card>
-</CardGroup>
-
-## Security Considerations
-
-<AccordionGroup>
-  <Accordion title="API Key Management">
-    Binance API Keys: IPs are whitelisted and only allowed to trade. Read only keys can work without IP whitelisting for monitoring - Ceffu
-  </Accordion>
-  <Accordion title="Microservice Architecture">
-    Microservices are made mutually exhaustive to each other - sync if required, but can be done with a lag, we do it on timestamp based. Example, input module should be in sync with Cefi-Defi Exposure Management
-  </Accordion>
-  <Accordion title="System Recovery">
-    System reset - should resume based on data from CEX's position and JLP position in the multi-sig
-  </Accordion>
-  <Accordion title="Binance Security">
-    Whitelist address - Multi-sig or the ETH SC, Ceffu setup
-  </Accordion>
-</AccordionGroup>
-
-## Scope for Multi-sig
-
-The multi-sig is responsible for critical operations:
-
-- Buying capability of JLP
-- Sell Capability of JLP
-- Transfer to CEX
-- Whitelist CEX addresses
-
-## Codebase Organization
+## Codebase Organization *(unsure if we will make the code public, leaving for reference)*
 
 The codebase is organized into logical modules:
 
@@ -184,4 +132,11 @@ The codebase is organized into logical modules:
 - **src/exposure_management/**: Core strategy execution logic
 - **src/execution/**: Trade execution and order management
 
-The server uses a shared global state for JLP token tracking (JLP_TOKENS) which acts as an in-memory cache that is periodically verified against on-chain data.
+## State Management
+
+The server uses two primary methods for state management:
+
+1. **Persistent Store**: MongoDB maintains the system state for recovery and analytics
+2. **In-Memory Cache**: A shared global state for Jupiter LP token tracking provides high-performance token balance access
+
+The in-memory cache is periodically verified against on-chain data to ensure consistency and detect any potential discrepancies.

@@ -37,31 +37,23 @@
   "navigation": {
     "groups": [
       {
-        "group": "Getting Started",
-        "pages": ["introduction", "overview/maxbtc_overview"]
+        "group": "Overview",
+        "pages": ["introduction", "overview/maxbtc_overview", "overview/maxbtc_liquidity"]
       },
       {
         "group": "Strategy",
         "pages": [
-          "strategy/overview", 
-          "strategy/technical_details", 
-          "strategy/faq"
-        ]
-      },
-      {
-        "group": "Private Deposits",
-        "pages": [
-          "private_deposits/overview",
-          "private_deposits/process",
-          "private_deposits/risks"
+          "strategy/details",
+          "strategy/faq",
+          "strategy/risks"
         ]
       },
       {
         "group": "Technical Documentation",
         "pages": [
           "technical/architecture",
-          "technical/maxbtc_server",
-          "technical/solana_integration"
+          "technical/blockchain_integrations",
+          "technical/security"
         ]
       }
     ]

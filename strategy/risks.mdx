@@ -1,12 +1,8 @@
 ---
 title: "Risks & Controls"
-description: "Understanding the risks and control mechanisms in the maxBTC strategy"
+description: "Understanding the risks and control mechanisms in the JLP Delta Neutral strategy"
 icon: "shield-exclamation"
 ---
-
-# Risks & Controls
-
-While the maxBTC strategy is designed to be secure and profitable, it's important to understand the potential risks involved and how we mitigate them.
 
 ## Key Risk Factors
 
@@ -28,59 +24,54 @@ While the maxBTC strategy is designed to be secure and profitable, it's importan
   <Accordion title="Smart Contract Risk">
     Dependence on Jupiter's smart contracts on Solana introduces potential vulnerabilities.
     
-    **Control:** Utilizing battle-tested and audited smart contracts mitigates security risks. Our contracts will also undergo comprehensive audits by reputable security firms.
+    **Control:** Utilizing battle-tested and audited smart contracts mitigates security risks. The JLP Delta Neutral strategy contracts will also undergo comprehensive audits by reputable security firms.
   </Accordion>
   
   <Accordion title="Exchange Risk">
     The insolvency of centralized exchange (CEX) hedging platforms could impact undistributed yield.
     
-    **Control:** Principal funds are secured off-exchange through dedicated custodians to minimize counterparty risk. We use Binance for trading operations, which has a proven track record and strong security measures.
+    **Control:** Principal funds are secured off-exchange through dedicated custodians to minimize counterparty risk. The JLP Delta Neutral strategy uses Binance for trading operations, which has a proven track record and strong security measures.
   </Accordion>
 </AccordionGroup>
 
-## Risk Monitoring System
+## Risk Monitoring Approach
 
 <img src="/images/risk-monitoring-dashboard.png" alt="Risk Monitoring Dashboard" className="w-full" />
 {/* [IMAGE NEEDED: Add a screenshot or mockup of the risk monitoring dashboard] */}
 
-Our monitoring system includes:
+The JLP Delta Neutral strategy employs a comprehensive risk monitoring approach that includes:
 
 1. **Continuous position monitoring** to ensure sufficient collateral
 2. **Automated rebalancing** to maintain optimal ratios between assets
-3. **Multi-signature requirements** for all critical operations
-4. **Regular audits** of smart contracts and processes
+3. **Multi-signature authorization** for all critical operations
+4. **Regular protocol audits** to validate system integrity
 
-## Asset Security Strategy
+<Note>
+For detailed information about the technical implementation of our security measures, please refer to our <a href="/technical/security" className="text-blue-500 hover:underline">Security Model</a> documentation.
+</Note>
+
+## Asset Strategy
 
 <CardGroup cols={2}>
   <Card title="Off-Exchange Custody" icon="vault">
     30% of deposited WBTC is held in off-exchange custody with Ceffu, a leading institutional custodian, for potential Binance collateralization. Collateral is transferred between custody and exchanges ONLY when required to settle funding obligations or realized P&L.
   </Card>
-  <Card title="On-Chain Transparency" icon="blockchain">
-    70% of the deposited WBTC is held on-chain in a Solana multisig wallet in the form of $JLP. The Solana multisig participants represent geographically distributed key holders that have vast industry experience and contribute actively to DeFi projects and funds.
+  <Card title="On-Chain Allocation" icon="eye">
+    70% of the deposited WBTC is held on-chain in the form of $JLP, providing transparent balance verification and asset allocation visibility.
   </Card>
 </CardGroup>
 
 ## Value BTC-Denominated
 
-All calculations for evaluating our strategy's performance are denominated in BTC. This approach ensures that even during market volatility, we maintain a clear focus on BTC-denominated returns.
+All calculations for evaluating the JLP Delta Neutral strategy's performance are denominated in BTC. This approach ensures that even during market volatility, we maintain a clear focus on BTC-denominated returns.
 
 We value our funds BTC-denominated, but hedge by leveraging long BTC positions with 25% BTC that rests on our Binance account. Thus, if BTC prices rise, we get more BTC on Binance. If BTC prices fall, we get "more" JLP on Solana (compared to what we would get for the amount of BTC we had).
 
 ## Additional Risk Considerations
 
 <Warning>
-While we have implemented robust risk controls, cryptocurrency investments inherently carry risks. The APY estimates are based on historical performance and may not reflect future results. Please consider your risk tolerance before participating.
+While we have implemented robust risk controls for the JLP Delta Neutral strategy, cryptocurrency investments inherently carry risks. The APY estimates are based on historical performance and may not reflect future results. Please consider your risk tolerance before participating.
 </Warning>
-
-## Monitoring and Security Measures
-
-The following monitoring systems are in place to ensure the security of funds:
-
-1. **Continuous position monitoring** to ensure sufficient collateral
-2. **Automated rebalancing** to maintain optimal ratios between assets
-3. **Multi-signature requirements** for all critical operations
-4. **Regular audits** of smart contracts and processes
 
 ## Disclaimer
 

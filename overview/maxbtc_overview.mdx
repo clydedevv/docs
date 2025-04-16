@@ -1,15 +1,14 @@
 ---
 title: "maxBTC Overview"
-description: "maxBTC is a yield-bearing synthetic asset that represents an effective 1x long BTC position while generating attractive yields through a carefully managed strategy"
+description: "maxBTC is a synthetic asset offering 1x long BTC exposure with high yields through strategic management"
 icon: "bitcoin-sign"
 ---
-
 
 ## Key Benefits
 
 <CardGroup cols={2} className="mb-6">
   <Card title="Higher APY" icon="arrow-trend-up">
-    Significantly higher APY compared to other BTC yield opportunities, typically 2-3x what competitors offer (10-20% vs 4-7%)
+    Significantly higher APY compared to other BTC yield opportunities, typically 2-3x what competitors offer
   </Card>
   <Card title="Native BTC Yield" icon="bitcoin-sign">
     Yield paid directly in BTC terms, not points or governance tokens like many alternatives
@@ -18,38 +17,47 @@ icon: "bitcoin-sign"
     Can be used across DeFi protocols for additional yield generation or hedging opportunities
   </Card>
   <Card title="Minimized Risk" icon="shield-halved">
-    Strategy design provides significant protection against negative APR compared to alternatives
+    The design of our strategies provide significant protection against negative APR compared to alternatives
   </Card>
 </CardGroup>
 
 ## Strategy Overview
 
-<Card title="How it Works" className="w-full">
+<Card title="Multi-Strategy Approach" className="w-full mb-4">
   <div>
-    The BTC deployed by users is managed in the following way:
+    maxBTC is designed to incorporate multiple yield-generating strategies over time, allowing for diversification and yield generation based on market conditions. Strategies are dynamically and automatically deployed by smart contracts to generate BTC-denominated returns while managing risk.
     
-    - **70%** is deployed to [Jupiter JLP pool](https://jup.ag/perps-earn) on Solana
-    - **30%** is deployed as collateral to Binance, where:
-      - Short ETH and SOL positions create delta-neutral exposure to these assets
-      - Leveraged long positions on BTC achieve an effective 1x long BTC exposure
+    Our initial strategy deployment is focused on the JLP Delta Neutral strategy, with additional strategies planned for future versions of maxBTC.
   </div>
 </Card>
 
-## Where Does the Yield Come From?
-
-maxBTC generates yield from three primary sources:
-
-<CardGroup cols={3}>
-  <Card title="JLP Pool Fees" icon="coins">
-    75% of fees generated from trading operations (opening/closing positions, price impact, borrowing fees, etc.) are distributed to JLP holders, typically contributing 15-35% of total yield
-  </Card>
-  <Card title="Rebalancing Arbitrage" icon="scale-balanced">
-    Rebalancing positions when JLP trades at a discount or premium relative to its BTC valuation, typically yielding ~0.5% annually
-  </Card>
-  <Card title="Funding Rate Management" icon="chart-line">
-    Usually a cost of 1-4%, but can occasionally be positive during extreme market conditions, providing additional yield protection
-  </Card>
-</CardGroup>
+<Card title="JLP Delta Neutral Strategy (v1)" className="w-full">
+  <div>
+    In the JLP Delta Neutral strategy, the BTC deployed by users is managed in the following way:
+    
+    <div className="flex items-start mt-2 mb-2">
+      <div className="w-2 h-2 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+      <div>
+        <strong>70%</strong> is deployed to <a href="https://jup.ag/perps-earn" className="text-blue-500 hover:underline">Jupiter JLP pool</a> on Solana
+      </div>
+    </div>
+    
+    <div className="flex items-start">
+      <div className="w-2 h-2 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+      <div>
+        <strong>30%</strong> is deployed as collateral to Binance, where:
+        <ul className="list-disc pl-6 mt-1">
+          <li>Short ETH and SOL positions create delta-neutral exposure to these assets</li>
+          <li>Leveraged long positions on BTC achieve an effective 1x long BTC exposure</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div className="mt-4">
+      <a href="/strategy/details" className="text-blue-500 hover:underline">View detailed strategy explanation →</a>
+    </div>
+  </div>
+</Card>
 
 ## Historical Performance
 
@@ -58,63 +66,6 @@ Based on a 90-day proof of concept with mainnet assets, the maxBTC strategy achi
 <Frame className="w-full">
   <img src="/images/historical-performance.png" alt="Historical APY Performance" />
 </Frame>
-
-## Expected Performance
-
-During bull market conditions, we anticipate the strategy to achieve 15-20% APY, while in bear markets, returns typically range from 10-15% APY. Our target is an average of approximately 18% APY with a Sharpe ratio exceeding 2.5.
-
-## Market Comparison
-
-<div className="overflow-x-auto">
-  <table className="w-full mt-4">
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>maxBTC</th>
-        <th>BTC LRTs</th>
-        <th>Pendle PT</th>
-        <th>BTC Vaults</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>APY</strong></td>
-        <td>10-25%</td>
-        <td>4-7%</td>
-        <td>4-7%</td>
-        <td>4-10%</td>
-      </tr>
-      <tr>
-        <td><strong>Yield denomination</strong></td>
-        <td>BTC</td>
-        <td>Points</td>
-        <td>BTC</td>
-        <td>Mixed (BTC & Points)</td>
-      </tr>
-      <tr>
-        <td><strong>Liquid</strong></td>
-        <td>Yes</td>
-        <td>Yes</td>
-        <td>No</td>
-        <td>No</td>
-      </tr>
-      <tr>
-        <td><strong>Usable as collateral</strong></td>
-        <td>Yes</td>
-        <td>Yes</td>
-        <td>No</td>
-        <td>No</td>
-      </tr>
-      <tr>
-        <td><strong>Negative APR risk</strong></td>
-        <td>Very low</td>
-        <td>No</td>
-        <td>No</td>
-        <td>Significant</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 ## Risk Management Summary
 
@@ -131,7 +82,7 @@ During bull market conditions, we anticipate the strategy to achieve 15-20% APY,
 </CardGroup>
 
 <Card className="text-center p-4 mb-6">
-  <a href="/private_deposits/risks" className="text-blue-500 hover:underline font-medium flex items-center justify-center">
+  <a href="/strategy/risks" className="text-blue-500 hover:underline font-medium flex items-center justify-center">
     <span className="mr-2">View comprehensive risk assessment</span>
     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

@@ -1,0 +1,321 @@
+---
+title: "JLP Delta Neutral Strategy Details"
+description: "This page provides a comprehensive overview of how the JLP Delta Neutral strategy works, from yield generation to technical implementation."
+icon: "lightbulb"
+---
+
+## Strategy Components
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+  <Card>
+    <div className="flex items-center mb-4">
+      <div className="mr-2 text-xl text-amber-500">
+        <i className="fas fa-coins"></i>
+      </div>
+      <h3 className="text-lg font-semibold">JLP Position (70%)</h3>
+    </div>
+    <div className="space-y-2">
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Deployed to <a href="https://jup.ag/perps-earn" className="text-blue-500 hover:underline">Jupiter JLP pool</a> on Solana</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Generates Perp DEX LP revenue</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Secured in multisig and continuously monitored</span>
+      </div>
+    </div>
+  </Card>
+  
+  <Card>
+    <div className="flex items-center mb-4">
+      <div className="mr-2 text-xl text-amber-500">
+        <i className="fas fa-balance-scale"></i>
+      </div>
+      <h3 className="text-lg font-semibold">CEX Hedging (30%)</h3>
+    </div>
+    <div className="space-y-2">
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Deployed as collateral to Binance</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Short ETH and SOL positions create delta-neutral exposure</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Long BTC positions achieve effective 1x exposure</span>
+      </div>
+    </div>
+  </Card>
+</div>
+
+```mermaid
+graph TD
+    JLP[JLP Position Analysis] -->|Token Composition| Hedge[Hedging Calculation]
+    Hedge --> Short_ETH[Short ETH Position]
+    Hedge --> Short_SOL[Short SOL Position]
+    Hedge --> Long_BTC[Long BTC Position]
+    
+    Short_ETH & Short_SOL & Long_BTC --> Balance[Net Exposure: 1x BTC]
+    Balance -->|Rebalance if necessary| CEX[CEX Positions]
+    
+    JLP -->|Fee Generation| Yield[Yield Calculation]
+    CEX -->|Funding Rate Impact| Yield
+    Yield --> APY[BTC-denominated APY]
+```
+
+## Where does the Yield Come From?
+
+The JLP Delta Neutral strategy generates yield from three primary sources:
+
+<CardGroup cols={3}>
+  <Card title="JLP Pool Fees" icon="coins">
+    75% of fees generated from Jupiter's trading operations are distributed to JLP holders, which typically contributes ~15-35% of the strategy's total yield depending on market conditions.
+  </Card>
+  <Card title="Rebalancing Arbitrage" icon="scale-balanced">
+    Rebalancing positions when JLP trades at a discount or premium relative to its BTC valuation, typically yielding ~0.5% annually.
+  </Card>
+  <Card title="Funding Rate Management" icon="chart-line">
+    Usually a cost of 1-4%, but can occasionally be positive during extreme market conditions, providing additional yield protection.
+  </Card>
+</CardGroup>
+
+### APY Components Breakdown
+
+<div className="space-y-6 mt-4">
+  <Card>
+    <h4 className="text-lg font-semibold mb-2">JLP APY Component (Primary Yield Driver)</h4>
+    <p className="mb-3">This is the primary yield component, typically ranging from high single-digit percentages to as much as 40%, depending on market conditions and trading activity on Jupiter.</p>
+    
+    <p className="mb-1 font-medium">Revenue Sources:</p>
+    <ul className="list-inside mb-3">
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Trading fees from perpetual DEX activity</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Borrowing fees from leveraged positions</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Liquidation proceeds from underwater positions</span>
+      </li>
+    </ul>
+    
+    <div className="flex items-center gap-2">
+      <span className="font-medium">Range:</span>
+      <span className="text-amber-500 font-semibold">5-40%</span>
+    </div>
+  </Card>
+  
+  <Card>
+    <h4 className="text-lg font-semibold mb-2">Rebalancing Arbitrage Component</h4>
+    <p className="mb-3">Generated by rebalancing positions whenever the JLP trades at a discount or premium relative to its BTC valuation.</p>
+    
+    <div className="flex items-center gap-2">
+      <span className="font-medium">Range:</span>
+      <span className="text-amber-500 font-semibold">~0.5%</span>
+    </div>
+  </Card>
+  
+  <Card>
+    <h4 className="text-lg font-semibold mb-2">Funding Rate Impact</h4>
+    <p className="mb-3">This is typically a cost rather than a yield component, though it can become positive during extreme market conditions.</p>
+    
+    <div className="flex items-center gap-2">
+      <span className="font-medium">Range:</span>
+      <span className="text-amber-500 font-semibold">-4% to +1%</span>
+    </div>
+  </Card>
+</div>
+
+<Note>
+There can be discrepancies between the displayed APY on Jupiter's interface and the realized APY of JLP Delta Neutral because:
+
+1. Not all principal is deployed at once (30% is reserved for hedging)
+2. Funding fees can reduce returns
+3. Jupiter displays APY in USD terms while we translate to BTC terms
+</Note>
+
+## Expected Performance
+
+Based on our 90-day proof of concept with mainnet assets, the JLP Delta Neutral strategy achieved:
+- **25% average APY** (during a period of high market volatility)
+- **Rolling 30-day average APY** typically fluctuated between 10% and 40%
+
+We expect long-term APY to stabilize in the 10-20% range over time, depending on market conditions.
+
+## Technical Implementation
+
+### BTC-Denominated Performance Metrics
+
+<Card title="BTC-Denominated Performance Metrics" className="w-full mb-6">
+  <p>JLP Delta Neutral reports all performance metrics in BTC terms rather than USD. This means:</p>
+  <ul className="list-disc pl-5 mt-2">
+    <li>All positions and yields are evaluated in their BTC-denominated value</li>
+    <li>APY reflects how much additional BTC you effectively accumulate</li>
+    <li>Value per share (VPS) tracks each investor's proportional ownership</li>
+  </ul>
+</Card>
+
+### Technical Rebalancing Process
+
+<Card title="Optimal Rebalancing Logic" className="w-full mb-6">
+  Our rebalancing system uses a proprietary algorithm to determine the optimal timing and size of rebalancing operations, considering:
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+    <div className="flex items-center">
+      <div className="w-1.5 h-2 rounded-full bg-amber-500 mr-1.5"></div>
+      <span>Gas costs vs expected arbitrage profit</span>
+    </div>
+    <div className="flex items-center">
+      <div className="w-1.5 h-2 rounded-full bg-amber-500 mr-1.5"></div>
+      <span>Market slippage on entry/exit</span>
+    </div>
+    <div className="flex items-center">
+      <div className="w-1.5 h-2 rounded-full bg-amber-500 mr-1.5"></div>
+      <span>JLP price deviations from NAV</span>
+    </div>
+    <div className="flex items-center">
+      <div className="w-1.5 h-2 rounded-full bg-amber-500 mr-1.5"></div>
+      <span>Market volatility conditions</span>
+    </div>
+  </div>
+</Card>
+
+```mermaid
+flowchart LR
+    A[JLP Price] -- Compare --> B[Underlying NAV]
+    B -- Deviation > Threshold --> C{Rebalance?}
+    C -- Yes --> D[Calculate Size]
+    D --> E[Execute Rebalance]
+    C -- No --> F[Monitor]
+    E --> G[Update Positions]
+    G --> A
+```
+
+## Advanced Strategy Management
+
+<AccordionGroup>
+  <Accordion title="JLP Composition Analysis">
+    <div className="space-y-4">
+      <p>We continuously monitor the JLP composition to ensure accurate hedging:</p>
+      
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Regular analysis of token distribution in the JLP</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Tracking exposure to SOL, ETH, and other assets</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Adjusting hedges based on changing pool composition</span>
+      </div>
+    </div>
+  </Accordion>
+  
+  <Accordion title="Exchange Execution">
+    <div className="space-y-4">
+      <p>We optimize for efficient execution when rebalancing:</p>
+      
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Minimizing slippage on entry and exit</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Order splitting to manage market impact</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Efficient gas usage for on-chain transactions</span>
+      </div>
+    </div>
+  </Accordion>
+  
+  <Accordion title="Funding Rate Management">
+    <div className="space-y-4">
+      <p>We actively monitor funding rates to manage costs:</p>
+      
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Monitoring funding rate environments across markets</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Balancing hedging needs with funding rate costs</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2"></div>
+        <span>Accounting for funding impact on overall strategy returns</span>
+      </div>
+    </div>
+  </Accordion>
+</AccordionGroup>
+
+## Security and Monitoring
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <Card title="Automated Monitoring Systems" icon="robot">
+    <div className="space-y-2">
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>24/7 position tracking with custom alerting thresholds</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Real-time risk metrics calculation (VaR, stress tests)</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Custom API integrations with exchange platforms</span>
+      </div>
+    </div>
+  </Card>
+  
+  <Card title="Multi-signature Security" icon="key">
+    <div className="space-y-2">
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Geographically distributed key holders</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Tiered access controls based on transaction size</span>
+      </div>
+      <div className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 mt-1.5"></div>
+        <span>Hardware security module integration</span>
+      </div>
+    </div>
+  </Card>
+</div>
+
+### Current Market Limitations
+
+<CardGroup cols={3}>
+  <Card title="Points vs Real Yield" icon="ticket">
+    <div className="text-sm">
+      Most BTC LRTs offer only points-based yield with uncertain long-term value rather than actual BTC yield.
+    </div>
+  </Card>
+  <Card title="Low Returns" icon="chart-line-down">
+    <div className="text-sm">
+      Existing options typically generate only 4-7% APY, significantly lower than JLP Delta Neutral's target range.
+    </div>
+  </Card>
+  <Card title="Limited Composability" icon="puzzle-piece">
+    <div className="text-sm">
+      Many high-yield BTC options lack DeFi composability, restricting their use as collateral or in other DeFi applications.
+    </div>
+  </Card>
+</CardGroup>
+

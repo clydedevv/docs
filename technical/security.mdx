@@ -1,0 +1,90 @@
+---
+title: "Security Model"
+icon: "shield-halved"
+---
+
+Security is a core consideration in maxBTC's design. This document outlines the technical security measures implemented across different components of the system.
+
+## Multisig Implementation
+
+<CardGroup cols={2}>
+  <Card title="Solana Multisig" icon="shield-halved">
+    The Solana multisig has a 4/7 threshold with keys geographically distributed. This secures the JLP tokens and ensures no single point of failure.
+  </Card>
+  <Card title="Ethereum Security" icon="shield-halved">
+    The WBTC vault utilizes industry-standard security practices, including time-locks and access controls.
+  </Card>
+</CardGroup>
+
+### Multisig Scope
+
+The multisig is responsible for critical operations:
+- Buying/selling JLP tokens
+- Token transfers to/from centralized exchanges
+- Whitelisting approved addresses
+- Approving bot execution permissions
+
+## API Key Management
+
+For CEX integrations:
+- IPs are strictly whitelisted
+- Trading permissions are minimized to only necessary actions
+- Read-only keys are used for monitoring where possible
+- Keys are stored securely and rotated regularly
+
+## Bot Security
+
+Automated bot accounts have restricted permissions:
+- Limited to specific actions (e.g., rebalancing within predefined parameters)
+- Cannot withdraw to unauthorized addresses
+- Operations are logged and monitored
+- Abnormal activity triggers alerts
+
+## Technical Risk Mitigations
+
+<AccordionGroup>
+  <Accordion title="Key Revocability & Management">
+    Unlike CEX API keys, Solana private keys cannot be revoked if compromised, requiring a stronger security model with multisig controls and careful key management procedures.
+  </Accordion>
+  <Accordion title="Monitoring Implementation">
+    Our monitoring systems leverage:
+    - Real-time price feeds with fallback data sources
+    - Automated threshold alerts with escalation paths
+    - Position health calculators that run on redundant infrastructure
+    - Geographically distributed monitoring nodes
+  </Accordion>
+  <Accordion title="Smart Contract Security">
+    Smart contracts temporarily hold assets only when necessary, minimizing exposure time. All contracts have undergone security audits by independent firms and implement:
+    - Time-delay mechanisms for sensitive operations
+    - Circuit breakers for unusual activity
+    - Role-based access controls
+  </Accordion>
+  <Accordion title="System Recovery">
+    Recovery protocols are in place to restore operations based on on-chain data and CEX positions in case of system failure, including:
+    - Off-site backups of critical configuration
+    - Documented recovery procedures
+    - Regular recovery drills
+  </Accordion>
+</AccordionGroup>
+
+## Liquidation Prevention Technical Implementation
+
+To prevent liquidation risk due to significant price movements (as outlined in our <a href="/strategy/risks#key-risk-factors" className="text-blue-500 hover:underline">Risk documentation</a>), we've implemented:
+
+1. A "safety" metric calculator that continuously monitors our LTV based on real-time price data
+2. Tiered automated rebalancing triggers at conservative thresholds (30%, 35%, 40% price movements)
+3. Multiple independent monitoring systems with automated failover
+4. Pre-authorized execution paths for emergency rebalancing when required
+
+## Cross-Chain Security 
+
+The system implements specialized security measures for cross-chain operations:
+
+1. **Message validation**: All cross-chain messages undergo cryptographic verification
+2. **Sequencing protection**: Transaction ordering is enforced to prevent attacks
+3. **Timeout mechanisms**: Failed cross-chain transactions automatically revert after a safety period
+4. **Relayer redundancy**: Multiple independent relayers ensure message delivery
+
+<Note>
+For information about the business and investment risks of the JLP Delta Neutral strategy, please refer to our <a href="/strategy/risks" className="text-blue-500 hover:underline">Risks & Controls</a> documentation.
+</Note> 

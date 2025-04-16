@@ -17,7 +17,7 @@ The system relies on two primary sources of truth:
 
 <img src="/images/server-architecture.png" alt="Server Architecture Diagram" />
 
-## Microservices
+## Microservices *(Placeholder section, do we want this?)*
 
 The server consists of 6 core microservices plus auxiliary components:
 
@@ -41,29 +41,3 @@ The server consists of 6 core microservices plus auxiliary components:
     Ensures sufficient collateral for open positions
   </Card>
 </CardGroup>
-
-For detailed technical implementation, security considerations, and integration specifics, see the [Detailed Technical Architecture](/technical/architecture) documentation.
-
-## Security Concerns
-
-<AccordionGroup>
-  <Accordion title="API Key Management">
-    Binance API Keys: IPs are whitelisted and only allowed to trade. Read only keys can work without IP whitelisting for monitoring - Ceffu
-  </Accordion>
-  <Accordion title="Microservice Architecture">
-    Microservices are made mutually exhaustive to each other - sync if required, but can be done with a lag, we do it on timestamp based. Example, input module should be in sync with Cefi-Defi Exposure Management
-  </Accordion>
-  <Accordion title="System Recovery">
-    System reset - should resume based on data from CEX's position and JLP position in the multi-sig
-  </Accordion>
-  <Accordion title="Binance Security">
-    Whitelist address - Multi-sig or the ETH SC, Ceffu setup
-  </Accordion>
-</AccordionGroup>
-
-## Scope for Multi-sig
-
-- Buying capability of JLP
-- Sell Capability of JLP
-- Transfer to CEX
-- Whitelist CEX addresses 
