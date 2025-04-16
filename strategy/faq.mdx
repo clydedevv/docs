@@ -3,6 +3,11 @@ title: "Strategy FAQ"
 description: "Frequently asked questions about the JLP Delta Neutral strategy"
 icon: "circle-question"
 ---
+
+<Note>
+For questions about risks and risk management, please see our comprehensive [Risk Documentation](/strategy/risks).
+</Note>
+
 ## General Questions
 
 <AccordionGroup>
@@ -97,32 +102,3 @@ icon: "circle-question"
     - Implementing more sophisticated hedging techniques as the strategy matures
   </Accordion>
 </AccordionGroup>
-
-## Risk Questions
-
-<AccordionGroup>
-  <Accordion title="What is the worst-case scenario if the market crashes?">
-    In a worst-case market crash scenario:
-
-    1. If BTC drops by approximately 45% **before rebalancing can occur**, there is a theoretical liquidation risk in the 70/30 deployment model
-    2. If funding rates become extremely negative, this could further impact returns
-
-    However, several factors mitigate these risks:
-    - Automated rebalancing systems that trigger well before liquidation thresholds
-    - Historical data shows BTC has never experienced a weekly drop exceeding 33.52% since perpetual listing on Binance in 2019
-    - The ability to adjust deployment ratios if market conditions warrant it
-
-    Even in extreme market conditions, principal protection remains a key focus of the JLP Delta Neutral strategy design.
-  </Accordion>
-
-  <Accordion title="How robust is the infrastructure?">
-    The JLP Delta Neutral strategy relies on a robust technical infrastructure with multiple redundancies:
-
-    1. **Automated Monitoring Systems**: Continuously track positions, collateral levels, and market conditions
-    2. **Multi-Signature Security**: Critical operations require approval from multiple trusted parties
-    3. **Backup Execution Pathways**: Alternative methods to execute critical operations if primary systems fail
-    4. **Regular System Audits**: Ongoing review of system performance and security
-
-    The infrastructure has been designed with security and reliability as primary considerations, incorporating lessons learned from years of experience in DeFi operations.
-  </Accordion>
-</AccordionGroup> 
