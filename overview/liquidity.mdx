@@ -1,0 +1,72 @@
+---
+title: "Liquidity Model"
+icon: "droplet"
+description: "How maxBTC provides instant entry and exit options for users"
+---
+
+Liquidity is a cornerstone of maxBTC's design. Unlike traditional BTC vaults or hedge funds that lock capital with unpredictable exit windows, maxBTC is built from the ground up to enable instant entry and exit options.
+
+## Key Liquidity Features
+
+<CardGroup cols={2}>
+  <Card title="DEX Integrations" icon="arrows-left-right" iconType="duotone">
+    Deep liquidity pools on decentralized exchanges allow users to instantly swap maxBTC for other assets without waiting for withdrawal cycles.
+  </Card>
+  
+  <Card title="Accelerated Orderbook" icon="bolt" iconType="duotone">
+    A specialized buffer mechanism allows for large withdrawals and liquidations to happen within minutes rather than hours or days.
+  </Card>
+
+  <Card title="Arbitrage Mechanisms" icon="scale-balanced" iconType="duotone">
+    Incentivized arbitrageurs help maintain the peg to BTC, providing additional liquidity and enabling efficient price discovery.
+  </Card>
+  
+  <Card title="Native BTC Redemptions" icon="bitcoin" iconType="duotone">
+    For users who prefer direct redemption, maxBTC supports standard withdrawal cycles to receive the underlying BTC with minimal fees.
+  </Card>
+</CardGroup>
+
+## Infinite strategies, one liquid asset: maxBTC
+
+<img src="/images/day1Defi.png" alt="Day 1 DeFi Integrations" className="w-full rounded-lg mb-4" />
+
+### Network effects of a single asset
+
+maxBTC creates powerful network effects through a unified approach:
+
+- **Single Minting Contract**: All maxBTC tokens originate from one central minting contract, ensuring consistency and standardization.
+- **Unified DEX Liquidity**: Concentrates liquidity in a single asset rather than fragmenting across multiple tokens, creating deeper markets.
+- **DeFi Integrations**: A single liquid asset simplifies integration across lending platforms, yield aggregators, and other DeFi protocols.
+- **Channel Partner Integrations**: Partners can easily integrate with one standardized asset rather than multiple yield strategies.
+- **Automated Deposits/Withdrawals**: Streamlined process for capital movement
+- **Arbitrage**: Helps protect the BTC peg and keeps entry/exit costs minimal
+- **Instant Entry/Exit**: DEX liquidity enables immediate trading without waiting for redemption cycles
+
+### Infinite scalability architecture
+
+<CardGroup cols={2}>
+  <Card title="Every Strategy is a Vault" icon="vault" iconType="duotone">
+    Each yield strategy operates as an independent vault that can exist on any chain while contributing to the same maxBTC token.
+  </Card>
+  
+  <Card title="Multiple Vault Managers" icon="users-gear" iconType="duotone">
+    Distributed management enables specialized expertise for different strategies while maintaining unified asset representation.
+  </Card>
+
+  <Card title="Individual Strategy Caps" icon="shield" iconType="duotone">
+    Each vault has dedicated caps and insurance deposits to manage risk while allowing the overall protocol to scale infinitely.
+  </Card>
+  
+  <Card title="On-Chain Transparency" icon="eye" iconType="duotone">
+    Full transparency with on-chain vault reallocations and management, not a black-box hedge fund approach.
+  </Card>
+</CardGroup>
+
+## Accelerated Orderbook Mechanism
+
+maxBTC maintains a 10% buffer on Neutron that enables users to exit positions instantly without waiting for standard 24-hour redemption cycles. This mechanism uses Duality's orderbook to provide atomic execution, better pricing through aggregated liquidity, and cross-chain accessibility.
+
+<Note>
+  Details on implementation and network selection available in our <a href="/strategy/technical_details#accelerated-orderbook-mechanism" className="text-amber-600 hover:text-amber-500 font-medium">Strategy Implementation</a> documentation.
+</Note>
+ 

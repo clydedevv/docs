@@ -1,91 +1,81 @@
 ---
-title: "Structured"
-description: "We address an enormous opportunity by making sophisticated trading strategies accessible, liquid, and composable. As successfully demonstrated by similar projects, even well-known strategies can unlock billions in capital through tokenization."
+title: "maxBTC"
+description: "The first liquid, scalable BTC-denominated yield strategy"
 ---
 
-## Our Vision
 
-<Card title="Horizontal Scaling of Tokenized CeDeFi Strategies" className="w-full mb-4">
-  <p className="mb-4">While vertical scaling of a single strategy has limitations, our approach packages multiple CeDeFi strategies into liquid assets with LST-like user experience, combining hedge fund returns with the composability and liquidity of tokens.</p>
-</Card>
+## Problem Statement
 
-## Why Structured?
+<div className="text-sm">
+Bitcoin is one of the world's most valuable assets, yet most of it still sits idle. The current BTCFi landscape presents three critical limitations:
+</div>
 
-<CardGroup cols={2} className="mb-6">
-  <Card title="Problem We're Solving" icon="circle-exclamation">
-    Most BTC yield options have significant drawbacks:
-    
-    • Low APR (4-7%)
-
-    • Reliance on unsustainable points/incentives
-
-    • Limited liquidity or composability
-
-    • Significant negative APY risk
+<CardGroup cols={3}>
+  <Card title="Illiquidity" icon="lock" iconType="duotone">
+    <div className="text-sm">BTC vaults and hedge funds lock up capital with unpredictable entry/exit windows and costs, limiting usability for DeFi.</div>
   </Card>
-  <Card title="Our Approach" icon="lightbulb">
-    We provide:
-    
-    • Higher returns (10-25% APY)
-
-    • Liquid, composable assets
-
-    • Transparent strategy execution
-    
-    • Real BTC-denominated yield
+  
+  <Card title="No Real Yield" icon="ticket" iconType="duotone">
+    <div className="text-sm">BTC LRTs mostly offer unsustainable points-based yield, not genuine BTC returns. Staking yields are plummeting and points campaigns are ending.</div>
+  </Card>
+  
+  <Card title="Not Scalable" icon="chart-network" iconType="duotone">
+    <div className="text-sm">BTC vaults rarely scale beyond 1,000 BTC and lack DeFi composability, limiting their potential for growth and integration.</div>
   </Card>
 </CardGroup>
 
-## Products
+## Introducing maxBTC
 
-<CardGroup cols={1} className="w-full mb-4">
-  <Card title="maxBTC" icon="bitcoin-sign" href="/overview/maxbtc_overview">
-    Our first tokenized trading strategy, offering BTC-denominated yield from Perpetual LP-ing and Funding Rates arbitrage, with historical performance averaging ~25% APY during our 3-month on-chain pilot.
+**maxBTC: Real Yield for Bitcoin**
+
+<div className="text-sm">
+maxBTC is a synthetic, liquid, yield-bearing BTC asset that maintains 1:1 BTC price exposure while generating BTC-denominated yield from proven DeFi strategies. Created by Structured, maxBTC is optimized for DEX, lending, and yield-splitting integrations while maintaining an effective 1x long BTC position that compounds rewards (similar to wstETH).
+</div>
+
+<CardGroup cols={3}>
+  <Card title="Liquid" icon="droplet" iconType="duotone">
+    <div className="text-sm">Tokenized for easy exit via DEXs and usable as collateral in DeFi, eliminating traditional lock-up periods.</div>
+  </Card>
+  
+  <Card title="Real BTC Yield" icon="bitcoin" iconType="duotone">
+    <div className="text-sm">Delivers sustainable 10-20% APY via JLP pool fees, price impact, trading fees, and other DeFi mechanisms.</div>
+  </Card>
+  
+  <Card title="Infinitely Scalable" icon="chart-line-up" iconType="duotone">
+    <div className="text-sm">Designed to expand across multiple strategies and chains, combining yield sources for unlimited capacity growth.</div>
   </Card>
 </CardGroup>
 
-## Team
+## How maxBTC Works
 
-Built by ex-core contributors to Lido and [P2P.ORG](http://p2p.org/), we are pioneering a new asset class that enhances attractive strategies by making them more accessible and composable.
+<div className="text-sm">
+maxBTC maintains an effective 1:1 BTC position at all times while generating yield through a combination of strategies. The flagship [JLP BTC Neutral strategy](/strategy/overview) provides sustainable returns through a market-proven approach:
+</div>
 
-<CardGroup cols={2}>
-  <Card title="Kai Tiurin" icon="user">
-    A key architect of Lido's $10B+ TVL liquid staking protocol, demonstrating deep expertise in building and scaling secure DeFi infrastructure.
-  </Card>
-  <Card title="Mitya Argunov" icon="user">
-    Former CPO at P2P.ORG, instrumental in establishing their $8B+ AUM non-custodial staking platform, showcasing significant experience in managing large-scale staking operations.
-  </Card>
-  <Card title="Francesco Filippo Tandoi" icon="user">
-    A seasoned smart contract engineer with over three years of experience in a hedge fund, bringing valuable expertise from traditional finance and a strong track record in EVM open-source projects.
-  </Card>
-  <Card title="Jatin Bedi" icon="user">
-    An expert in systematic DeFi trading and risk management, with prior experience as an investment banker at Nomura. His research has influenced global crypto regulation, and he has collaborated with Uniswap on innovative pricing curves.
+<img src="/images/howMaxBTCWorks.png" alt="How maxBTC Works" className="w-full rounded-lg mb-8" />
+
+<div className="text-sm">
+maxBTC can be minted on multiple chains (Neutron, Ethereum Mainnet, and more) using wBTC or native BTC deposits. Users can withdraw maxBTC to receive the underlying BTC assets at any time, with a short withdrawal period or through the liquidity pool.
+</div>
+
+## Market Opportunity
+
+<div className="text-sm">
+Perpetual markets have found product-market fit in crypto and are here to stay. These markets fundamentally need liquidity and reward liquidity providers with higher rates than lower-risk options like staking and lending.
+
+However, these liquidity pools lack clear directional exposure to desired assets (e.g., Jupiter JLP pool represents a mix of BTC, ETH, SOL, and USDC/T) and require active management.
+
+maxBTC brings superior yields generated by perpetual markets' liquidity pools to users who prefer clear directional exposure to Bitcoin.
+</div>
+
+## About Structured
+
+<div className="text-sm">
+Structured is the organization behind maxBTC, focused on making real BTC yield liquid, scalable, and ready to build on. With a team experienced in DeFi protocol development and systematic trading, Structured transforms advanced DeFi strategies into simple, usable assets.
+</div>
+
+<CardGroup cols={1}>
+  <Card title="Explore maxBTC Liquidity" icon="droplet" iconType="duotone" href="/overview/liquidity">
+    <div className="text-sm">Learn about maxBTC's liquidity model and how it enables instant entry/exit</div>
   </Card>
 </CardGroup>
-
-## Launch Roadmap
-
-<Steps>
-  <Step title="Private Deposits Phase (Q2 2025)">
-    Our initial launch allows early partners and whitelisted users to deposit BTC into our protocol. This phase includes:
-    - Beta testing of core infrastructure
-    - Limited capacity (capped at $10M)
-    - Whitelisted smart contract access
-    - KYC requirements for initial users
-  </Step>
-  <Step title="Public Capped Launch (Early Q3 2025)">
-    The first public access to the protocol, featuring:
-    - Permissionless smart contract for wider access
-    - Higher but still limited capacity
-    - Initial DeFi integrations
-    - Enhanced monitoring and risk management systems
-  </Step>
-  <Step title="Full-Scale Launch (Q3 2025)">
-    Complete transition to a fully permissionless protocol with:
-    - Unlimited capacity
-    - Permissionless mint/redeem functionality
-    - Comprehensive DeFi integrations
-    - Deep liquidity across multiple venues
-    - Advanced yield optimization features
-  </Step>
-</Steps>

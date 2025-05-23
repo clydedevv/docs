@@ -1,0 +1,133 @@
+---
+title: "Horizontal Scaling"
+icon: "layer-group"
+description: "How maxBTC achieves infinite scalability across strategies and chains"
+---
+
+Unlike traditional BTC yield products that are limited by strategy capacity, maxBTC is designed for horizontal scaling across multiple strategies and chains, enabling virtually unlimited growth potential.
+
+## The Scaling Problem
+
+Traditional BTC yield approaches face several scaling limitations:
+
+- **Strategy Saturation**: Single strategies (like LRTs or individual vaults) quickly reach capacity limits
+- **Chain Constraints**: Solutions limited to one blockchain cannot tap into cross-chain opportunities
+- **Network Fragmentation**: Multiple tokens for different strategies fragment liquidity and reduce utility
+
+## maxBTC's Horizontal Scaling Solution
+
+<CardGroup cols={2}>
+  <Card title="Unified Asset, Multiple Strategies" icon="diagram-project">
+    maxBTC maintains a single liquid asset while distributing risk and yield generation across multiple underlying strategies:
+    
+    • JLP BTC Neutral ($500M capacity)
+    
+    • Future TradFi strategies ($100B+ potential)
+
+    • Cross-exchange arbitrage opportunities
+
+    • Multi-chain yield sources
+  </Card>
+  
+  <Card title="Architectural Advantages" icon="cubes">
+    The system is built for infinite scalability through:
+
+    
+    • Single minting contract with unified liquidity 
+    
+    • Modular vault architecture with individual caps
+    
+    • Multiple vault managers (both internal and external)
+    
+    • Cross-chain interoperability
+    
+    • Insurance fund for risk management
+  </Card>
+</CardGroup>
+
+## Minting Contract Architecture
+
+<img src="/images/maxBTCmintingContract.png" alt="maxBTC Minting Contract Architecture" className="w-full rounded-lg mb-4" />
+
+The maxBTC minting contract forms the core of our horizontal scaling approach. It:
+
+- Acts as a single point of entry for deposits and minting
+- Manages multiple underlying vaults through a standardized interface
+- Optimizes capital allocation across strategies based on yield and risk parameters
+- Maintains a unified token representation regardless of the underlying yield source
+
+## Strategy Expansion Process
+
+As maxBTC grows, new strategies can be integrated through a defined governance process:
+
+1. **Strategy Proposal**: New yield strategies are proposed and technically vetted
+2. **Risk Assessment**: Evaluation of risk parameters, including correlation with existing strategies
+3. **Capacity Allocation**: Each approved strategy receives an allocation cap
+4. **Gradual Integration**: New strategies are introduced with conservative caps that increase with proven performance
+
+## Current and Future Capacity
+
+<CardGroup cols={1}>
+  <Card title="Strategy Capacity Overview">
+    <div className="overflow-x-auto">
+      <table className="w-full">
+        <thead>
+          <tr className="border-b-2 border-purple-200 dark:border-purple-900">
+            <th className="p-2 text-left">Strategy</th>
+            <th className="p-2 text-left">Current Capacity</th>
+            <th className="p-2 text-left">Expected APY</th>
+            <th className="p-2 text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b border-purple-100 dark:border-purple-800">
+            <td className="p-2">JLP BTC Neutral</td>
+            <td className="p-2">$500M</td>
+            <td className="p-2">10-20%</td>
+            <td className="p-2">Active</td>
+          </tr>
+          <tr className="border-b border-purple-100 dark:border-purple-800">
+            <td className="p-2">CHF Carry Trade</td>
+            <td className="p-2">$100B+</td>
+            <td className="p-2">3-7%</td>
+            <td className="p-2">In Development</td>
+          </tr>
+          <tr className="border-b border-purple-100 dark:border-purple-800">
+            <td className="p-2">Additional CeFi/DeFi</td>
+            <td className="p-2">$1B+</td>
+            <td className="p-2">5-15%</td>
+            <td className="p-2">Research</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </Card>
+</CardGroup>
+
+## Benefits of Horizontal Scaling
+
+<CardGroup cols={3}>
+  <Card title="Diversification" icon="chart-mixed">
+    Reduced risk through strategy diversification across uncorrelated yield sources
+  </Card>
+  
+  <Card title="Yield Optimization" icon="arrow-trend-up">
+    Ability to shift capital to highest-yielding strategies as market conditions change
+  </Card>
+  
+  <Card title="Unlimited Capacity" icon="infinity">
+    No theoretical upper limit on total capacity due to multi-strategy approach
+  </Card>
+  
+  <Card title="Network Effects" icon="network-wired">
+    Increased adoption drives DeFi integration and utility expansion
+  </Card>
+  
+  <Card title="User Simplicity" icon="user">
+    Complex scaling happens behind the scenes while users hold a single asset
+  </Card>
+  
+  <Card title="Risk Management" icon="shield-check">
+    Each strategy has its own risk parameters and insurance allocations
+  </Card>
+</CardGroup>

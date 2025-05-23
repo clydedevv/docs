@@ -11,6 +11,13 @@
     "light": "#FFAA33",
     "dark": "#D68116"
   },
+  "background": {
+    "decoration": "gradient",
+    "color": {
+      "light": "#FAFBFF",
+      "dark": "#0C0C0C"
+    }
+  },
   "theme": "maple",
   "topbarLinks": [
     {
@@ -38,15 +45,26 @@
     "groups": [
       {
         "group": "Overview",
-        "pages": ["introduction", "overview/maxbtc_overview", "overview/maxbtc_liquidity"]
+        "pages": [
+          "introduction",
+          "overview/liquidity",
+          "overview/horizontal_scaling",
+          "overview/roadmap"
+        ]
       },
       {
-        "group": "Strategy",
+        "group": "BTC yield strategies",
         "pages": [
-          "strategy/details",
-          "strategy/faq",
-          "strategy/risks"
-        ]
+          {
+            "group": "JLP BTC Neutral",
+            "pages": [
+              "strategy/overview",
+              "strategy/technical_details",
+              "strategy/faq",
+              "strategy/risks"
+            ]
+          }
+        ] 
       },
       {
         "group": "Technical Documentation",

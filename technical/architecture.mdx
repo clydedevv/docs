@@ -1,8 +1,10 @@
 ---
-title: "Technical Architecture"
-icon: "microchip"
+title: "System Architecture"
+icon: "server"
+description: "The technical foundation powering maxBTC"
 ---
-This section provides technical details about maxBTC's implementation across different blockchains, security considerations, and system architecture.
+
+This page provides technical details about maxBTC's implementation across different blockchains, security considerations, and system architecture.
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
   <Card title="Blockchain Integrations" icon="link-simple" href="/technical/blockchain_integrations">
@@ -13,9 +15,11 @@ This section provides technical details about maxBTC's implementation across dif
   </Card>
 </div>
 
-## Implementation Overview
+## System Overview
 
-The maxBTC server is built in Rust and follows a modular design pattern. Communication between modules happens through shared database state and the global JLP token tracking system. 
+The maxBTC server is built in Rust and follows a modular design pattern. Communication between modules happens through shared database state and the global JLP token tracking system.
+
+<img src="/images/server-architecture.png" alt="Server Architecture" className="w-full rounded-lg my-4" />
 
 ### Key Technologies
 
@@ -45,6 +49,19 @@ graph TD
     MS[Multi-sig SOL] <--> Server
     Server <--> CEX
 ```
+
+## Key Architectural Components
+
+### Microservices
+
+Each component of the maxBTC system is implemented as a dedicated microservice:
+
+- **Input Module**: Processes user deposits and manages asset allocation
+- **Exit Module**: Handles withdrawals and redemptions
+- **CeFi-DeFi Exposure Manager**: Balances positions across centralized and decentralized venues
+- **Fee Hedge**: Converts collected trading fees to BTC
+- **Collateral Rebalancing**: Maintains delta neutrality as market conditions change
+- **Collateral Management**: Optimizes capital allocation across venues
 
 ## Microservice Integration Matrix
 
@@ -117,26 +134,15 @@ graph TD
   This matrix shows which external systems each microservice integrates with.
 </div>
 
-<Note>
-  For security considerations including API key management, multisig implementation, and system recovery details, see the [Security Model](/technical/security) documentation.
-</Note>
-
-## Codebase Organization *(unsure if we will make the code public, leaving for reference)*
-
-The codebase is organized into logical modules:
-
-- **src/rpc/**: Contains Solana and other blockchain RPC client implementations
-- **src/external_ws/**: WebSocket clients for exchange data and order execution
-- **src/models/**: MongoDB data models for persisting strategy state
-- **src/fetch_systems/**: Data retrieval from various external systems
-- **src/exposure_management/**: Core strategy execution logic
-- **src/execution/**: Trade execution and order management
-
 ## State Management
 
-The server uses two primary methods for state management:
+The system uses two primary methods for state management:
 
 1. **Persistent Store**: MongoDB maintains the system state for recovery and analytics
 2. **In-Memory Cache**: A shared global state for Jupiter LP token tracking provides high-performance token balance access
 
-The in-memory cache is periodically verified against on-chain data to ensure consistency and detect any potential discrepancies.
+The in-memory cache is periodically verified against on-chain data to ensure consistency and detect discrepancies.
+
+<Note>
+  For security considerations including API key management, multisig implementation, and system recovery details, see the [Security Model](/technical/security) documentation.
+</Note>

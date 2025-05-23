@@ -1,51 +1,63 @@
 ---
 title: "Blockchain Integrations"
 icon: "link-simple"
+description: "How maxBTC operates across multiple blockchains"
 ---
 
-maxBTC operates across multiple blockchains to optimize yield generation while maintaining security. This document details our implementation across different chains.
+maxBTC operates across multiple blockchain networks to optimize yield generation while maintaining security and cross-chain liquidity.
 
-## Solana Integration
+## Supported Networks
 
-Solana integration serves a primary purpose: extracting yield from Jupiter Liquidity Provider (JLP) tokens.
+<CardGroup cols={3}>
+  <Card title="Ethereum">
+    User deposits (wBTC, ETH, USDC, USDT) and vault contract deployment
+  </Card>
+  
+  <Card title="Solana">
+    Yield generation through Jupiter JLP pool and perpetual trading
+  </Card>
+  
+  <Card title="Neutron">
+    maxBTC token minting, cross-chain coordination, and accelerated exit liquidity buffer
+  </Card>
+</CardGroup>
 
-<Note>
-JLP is an LP token of the Jupiter Perpetuals pool. Essentially, it's an index token of 5 assets (SOL, ETH, BTC, USDC, USDT). Besides that, it also compounds Jupiter trading fees and traders' PnL.
-</Note>
+## Network-Specific Implementations
 
-### Jupiter Perpetuals Overview
+### Ethereum Integration
 
-High-level operations of the "JLP" part are:
+**Primary Functions:**
+- User deposit acceptance (wBTC, ETH, USDC, USDT)
+- Vault contract for asset custody
+- Asset forwarding to custody addresses
 
-1. Getting deposits from Ethereum/Binance to Solana
-2. Processing withdrawals back to Ethereum
-3. Rebalancing positions when needed
+**Smart Contracts:**
+- Vault contracts for secure asset custody
+- Proxy contracts for asset forwarding
+- Cross-chain messaging coordination
 
-### Jupiter Integration Challenges
+### Solana Integration
 
-When interacting with Jupiter's JLP, there are several limitations to consider:
+**Jupiter Perpetuals Integration:**
 
-1. **Total TVL Cap**: We cannot provide more assets than the platform limit (current remaining quota is approximately 320M)
-2. **Per-asset Limit**: We cannot provide more than the target weightage +20% for each asset
-3. **Asset Restrictions**: From Binance on Solana, we can only withdraw SOL, USDC, and USDT
+Solana serves as the primary yield generation engine through deep integration with Jupiter's perpetual trading infrastructure:
 
-<Warning>
-The current target weightage for BTC is 11%, thus it can fluctuate only between 8.8% and 13.2%. However, if the current weight exceeds this range (e.g., 14.63%), no BTC can be provided despite what the UI might show.
-</Warning>
+- **JLP Pool Access**: Direct integration with Jupiter's $1.75B+ liquidity pool for sustainable yield generation
+- **Multi-Asset Exposure**: Automatic exposure management across SOL, ETH, BTC, USDC, and USDT within the pool
+- **Real-Time Yield Capture**: 75% of all trading fees, liquidations, and price impact distributed to liquidity providers
+- **Automated Rebalancing**: Dynamic position adjustments based on pool composition and trader positioning
+- **Cross-Chain Bridging**: Seamless USDC transfers from Binance for optimal capital deployment
 
-## Ethereum Integration
+### Neutron Integration
 
-The Ethereum blockchain is used for:
-
-1. Accepting user deposits (WBTC)
-2. Minting maxBTC tokens
-3. Processing redemptions
-
-Our smart contracts on Ethereum include vault contracts for custodying assets and token contracts for the maxBTC synthetic asset.
+**Cross-Chain Coordination:**
+- **maxBTC Token Minting**: Primary network where maxBTC tokens are minted and managed
+- **Accelerated Exit Buffer**: ~10% of wBTC deposits maintained for instant liquidity
+- **Duality Integration**: Single-sided wBTC limit orders at 1-2% premium for atomic exits
+- **Cross-Chain Routing**: Available via Skip Go, LiFi, and other routing protocols
+- **Fast Finality**: 30-second settlement to Ethereum and other networks vs 30-minute reverse flow
 
 ## Cross-Chain Asset Flow
-
-The following diagram shows how assets flow through the system:
 
 ```mermaid
 sequenceDiagram
@@ -82,4 +94,43 @@ sequenceDiagram
     
     Margined->>WBTC_binance: Closes long BTC (25% NAV)
     WBTC_binance->>Margined: Opens SOL/ETH/BTC hedge (25% NAV)
-``` 
+```
+
+## Cross-Chain Security Model
+
+### Multi-Signature Implementation
+
+- **Geographic Distribution**: Key holders distributed across different jurisdictions
+- **Threshold Requirements**: Multi-sig authorization for all critical operations
+- **Backup Systems**: Multiple execution pathways for redundancy
+
+### Asset Custody
+
+<CardGroup cols={2}>
+  <Card title="Off-Exchange Custody" icon="vault" iconType="duotone">
+    30% held in custody with Ceffu/Fireblocks/Copper for collateral management
+  </Card>
+  
+  <Card title="On-Chain Transparency" icon="eye" iconType="duotone">
+    70% held as JLP tokens with full on-chain verification and balance visibility
+  </Card>
+</CardGroup>
+
+## Integration Roadmap
+
+Future blockchain integrations planned:
+
+- **Bitcoin Network**: Native BTC deposit support
+- **Arbitrum**: Additional Ethereum L2 support  
+- **Base**: Coinbase ecosystem integration
+- **Polygon**: Enhanced cross-chain liquidity
+
+<CardGroup cols={2}>
+  <Card title="System Architecture" icon="server" href="/technical/architecture">
+    Explore the complete technical architecture powering maxBTC
+  </Card>
+  
+  <Card title="Strategy Implementation" icon="gears" href="/strategy/technical_details">
+    Learn how the JLP BTC Neutral strategy operates under the hood
+  </Card>
+</CardGroup> 
