@@ -3,49 +3,95 @@ title: "Strategy FAQ"
 description: "Frequently asked questions about the JLP BTC Neutral strategy"
 icon: "circle-question"
 ---
-## General Questions
+
+## Basic Questions
 
 <AccordionGroup>
-  <Accordion title="What is the difference between JLP BTC Neutral's displayed APY and Jupiter's displayed APY?">
-    There are three different APY figures to consider:
-
-    1. **JLP BTC Neutral Target APY**: 10% (bear market) to 20% (bull market)
-       - This is based on market conditions, reflecting an average across different market scenarios
-
-    2. **JLP Website Displayed APY**: Often higher (e.g., 40%+)
-       - This reflects returns on the invested capital only
-       - Since only about 70% of capital is deployed and 30% is reserved for hedging, there is capital inefficiency
-       - Funding fees must still be subtracted from this figure
-
-    3. **Realized APY**: What you actually receive
-       - This accounts for all costs, including funding fees
-       - Calculated based on BTC-denominated returns
-
-    The realized APY you observe will typically be lower than the figure shown on the JLP interface because not all principal is deployed at once and various fees reduce the net returns.
+  <Accordion title="What is maxBTC and how do I use it?">
+    maxBTC is a liquid, yield-bearing BTC asset that maintains 1:1 BTC price exposure while generating sustainable yield targeting ~10% APY at scale. You can:
+    
+    - **Hold it**: Simply hold maxBTC in your wallet to earn BTC-denominated yield automatically
+    - **Use in DeFi**: Use maxBTC as collateral for lending, liquidity provision, or other DeFi strategies
+    - **Exit anytime**: Trade maxBTC on DEXs or redeem it for the underlying BTC assets
+    
+    Unlike traditional BTC vaults or hedge funds, maxBTC gives you instant liquidity and DeFi composability.
   </Accordion>
 
-  <Accordion title="Is the JLP Pool APY denominated in USD or BTC terms?">
-    The JLP Pool APY is **denominated in USD terms** on the Jupiter platform.
+  <Accordion title="How do I deposit and get maxBTC tokens?">
+    Currently, maxBTC is in private deposits phase with selected partners and investors. 
+    
+    When publicly available (August 2025), you'll be able to:
+    1. Deposit wBTC, ETH, USDC, or USDT on Ethereum
+    2. Receive maxBTC tokens minted on Neutron
+    3. Start earning yield immediately
+    
+    The process is designed to be simple - just deposit supported assets and receive maxBTC tokens representing your share of the yield-generating strategy.
+  </Accordion>
 
-    For investor convenience, **we translate returns back to BTC** (i.e., how much BTC you effectively accumulate). This approach gives maxBTC holders a clearer picture of their returns in terms of the asset they value.
+  <Accordion title="How do I withdraw or exit my position?">
+    maxBTC offers multiple exit options for maximum flexibility. See our [Liquidity Model](/overview/liquidity) for complete details on:
+    
+    - **Instant DEX Trading**: Trade maxBTC on decentralized exchanges for immediate exit
+    - **Accelerated Orderbook**: Use the 10% buffer on Neutron for instant wBTC at 1-2% premium
+    - **Standard Redemption**: Redeem maxBTC for underlying BTC assets with minimal fees
+  </Accordion>
+
+  <Accordion title="What makes maxBTC different from other BTC yield products?">
+    maxBTC stands out in several key ways:
+    
+    - **Real yield**: Earns actual BTC-denominated returns (targeting ~10% APY at scale), not points or inflationary tokens
+    - **Liquid**: Can be traded on DEXs or used as collateral in DeFi, unlike traditional BTC vaults
+    - **Scalable**: Designed to expand across multiple strategies without fragmenting liquidity
+    - **Transparent**: All strategy mechanics are public, not a black-box hedge fund approach
+    - **Risk-minimized**: Delta-neutral design protects against everything except BTC price movements
+  </Accordion>
+
+  <Accordion title="Is this safe? What are the main risks?">
+    maxBTC is designed with risk-minimization as a priority. For comprehensive risk analysis, see our [Risk Management Framework](/strategy/risks).
+    
+    **Key safety features:**
+    - Delta-neutral to everything except BTC (maintains 1x BTC exposure)
+    - Multi-sig security and geographic distribution of key holders
+    - Insurance fund support and individual strategy caps
+    - BTC would need to drop ~45% relative to other assets before liquidation risk
+    
+    **Main risks include smart contract, exchange, and strategy risks** - all detailed in our risk documentation.
+  </Accordion>
+</AccordionGroup>
+
+## Strategy Performance Questions
+
+<AccordionGroup>
+  <Accordion title="What is the difference between target APY and displayed APY on Jupiter?">
+    There are three different APY figures to consider:
+
+    1. **maxBTC Target APY**: ~10% at scale
+       - Net BTC-denominated returns after all costs and capital allocation efficiency
+
+    2. **JLP Website Displayed APY**: Often higher (e.g., 40%+)
+       - Returns on invested capital only (not accounting for capital efficiency)
+       - Only ~70% of capital is deployed, 30% reserved for hedging
+
+    3. **Realized APY**: What you actually receive
+       - Accounts for all costs, including funding fees
+       - Calculated based on BTC-denominated returns
+
+    For detailed performance breakdown, see our [Strategy Overview](/strategy/overview).
+  </Accordion>
+
+  <Accordion title="Why are returns denominated in BTC terms?">
+    The JLP Pool APY is **denominated in USD terms** on Jupiter, but **we translate returns back to BTC** for investor convenience. This gives maxBTC holders a clearer picture of their returns in terms of the asset they value most.
   </Accordion>
 
   <Accordion title="What causes fluctuations in the NAV?">
-    There are several sources that can cause fluctuations in the net asset value (NAV):
+    NAV fluctuations come from several sources:
 
-    1. **Market-Driven Price of JLP**: The JLP token itself can fluctuate in value based on market conditions. This volatility introduces "noise" to the NAV.
-
-    2. **Funding Rate Dynamics**:
-       - If the funding fee is negative, the strategy can actually **earn** from the BTC long hedge on CEX, and from the borrow fee on JLP.
-       - Under typical circumstances, the strategy is **net long**, meaning we often **pay** more in funding fees than we earn, but still aim for a net positive return due to JLP fees and other mechanisms.
+    1. **JLP Token Price**: Market-driven fluctuations introduce "noise" to the NAV
+    2. **Funding Rate Dynamics**: 
+       - Negative funding rates can earn additional yield
+       - Positive funding rates are a cost (typical scenario)
     
-    We display the transparent market value so investors can see actual fluctuations rather than a smoothed value.
-  </Accordion>
-
-  <Accordion title="What is VPS shown in the reporting dashboard?">
-    VPS (Value Per Share) is essentially an **accounting tool** similar to how an ETF or index fund uses a "price per share."
-
-    It helps track each investor's proportional ownership in the strategy and how it changes over time. As the strategy generates yield, the VPS increases, reflecting the growth in the underlying value of each share.
+    We display transparent market value rather than smoothed values so investors can see actual fluctuations.
   </Accordion>
 </AccordionGroup>
 
@@ -53,47 +99,42 @@ icon: "circle-question"
 
 <AccordionGroup>
   <Accordion title="How is the position actually hedged?">
-    The strategy hedges underlying tokens in JLP by taking offsetting positions on centralized exchanges (CEX), based on:
+    The strategy hedges based on:
+    1. Actual underlying tokens in the JLP pool
+    2. Net position taken by traders against the JLP pool
 
-    1. The actual underlying tokens in the JLP pool
-    2. The net position taken by traders against the JLP pool
-
-    We do not hedge based on target weightage given by Jupiter, but rather on the actual token composition and trader positioning. This approach ensures more accurate hedging that adapts to real market conditions.
-
-    In case of market crashes, the strategy is designed to maintain appropriate hedge ratios through automated rebalancing systems.
+    We hedge based on real market conditions, not target weightings. For complete technical details, see our [Strategy Overview](/strategy/overview).
   </Accordion>
 
-  <Accordion title="Do you have a breakdown of the strategy's APY by components?">
-    While we don't maintain a real-time breakdown of each component's contribution to the APY, the approximate breakdown is:
-
-    - **JLP Fees**: The largest component, typically contributing 15-35% depending on market conditions
-    - **Funding Rates**: Usually a cost of 1-4%, but can occasionally be positive during extreme market conditions
-    - **Hedging/Rebalancing**: Typically contributes around 0.5%
-
-    The net result is the target APY range of 10-20% depending on market conditions.
-  </Accordion>
-
-  <Accordion title="What are the fees the strategy is consuming?">
+  <Accordion title="What are the strategy's fees and costs?">
     The strategy incurs several types of fees:
+    - **Trading Fees**: When rebalancing positions or executing hedges
+    - **Funding Rates**: Paid on perpetual futures positions  
+    - **Withdrawal Fees**: When removing liquidity from the JLP pool
+    - **Operational Costs**: API calls, gas fees, etc.
 
-    1. **Trading Fees**: When rebalancing positions or executing hedges
-    2. **Funding Rates**: Paid on perpetual futures positions
-    3. **Withdrawal Fees**: When removing liquidity from the JLP pool
-    4. **Operational Costs**: API calls, gas fees, etc.
-
-    At current scale, operational costs are negligible compared to the total strategy returns. The main cost factors are trading fees and funding rates, which are already accounted for in the reported APY figures.
+    All costs are already accounted for in the reported target APY of ~10% at scale.
   </Accordion>
 
-  <Accordion title="What is the strategy's scalability limit?">
-    The strategy's scaling is limited by several factors:
+  <Accordion title="What are maxBTC's management fees?">
+    maxBTC operates with a transparent fee structure:
+    
+    **Management Fee**: Details to be announced before public launch
+    **Performance Fee**: Details to be announced before public launch
+    
+    All fees will be clearly disclosed and competitive with industry standards. The target APY figures already account for all operational costs, with management fees to be deducted from gross returns.
+    
+    Fee structure will be finalized and published before the August 2025 public launch.
+  </Accordion>
 
-    1. **JLP Pool Size**: Currently $1.75B on Jupiter, which can be further increased by introducing new perps markets
-    2. **Liquidation Risk Management**: With the proposed 70/30 split, the scale is limited at approximately $200M
-    3. **JLP Position Liquidity**: The ability to liquidate the JLP position quickly if needed
+  <Accordion title="What is the strategy's capacity limit?">
+    **Current Strategy Capacity**: $500M for JLP BTC Neutral
+    
+    Limited by:
+    - JLP Pool Size (currently $1.75B on Jupiter)
+    - Position liquidity requirements
+    - Capital efficiency ratios
 
-    We can increase capacity by:
-    - Shifting to a more conservative split (closer to 50/50) at the cost of reduced APY
-    - Introducing additional perps markets to diversify liquidity sources
-    - Implementing more sophisticated hedging techniques as the strategy matures
+    For scaling plans beyond this capacity, see our [Horizontal Scaling](/overview/horizontal_scaling) documentation.
   </Accordion>
 </AccordionGroup>

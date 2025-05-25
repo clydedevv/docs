@@ -8,53 +8,124 @@ Unlike traditional BTC yield products that are limited by strategy capacity, max
 
 ## The Scaling Problem
 
-Traditional BTC yield approaches face several scaling limitations:
-
-- **Strategy Saturation**: Single strategies (like LRTs or individual vaults) quickly reach capacity limits
-- **Chain Constraints**: Solutions limited to one blockchain cannot tap into cross-chain opportunities
-- **Network Fragmentation**: Multiple tokens for different strategies fragment liquidity and reduce utility
-
-## maxBTC's Horizontal Scaling Solution
-
-<CardGroup cols={2}>
-  <Card title="Unified Asset, Multiple Strategies" icon="diagram-project">
-    maxBTC maintains a single liquid asset while distributing risk and yield generation across multiple underlying strategies:
-    
-    • JLP BTC Neutral ($500M capacity)
-    
-    • Future TradFi strategies ($100B+ potential)
-
-    • Cross-exchange arbitrage opportunities
-
-    • Multi-chain yield sources
+<CardGroup cols={3}>
+  <Card title="Strategy Saturation" icon="gauge-high">
+    Single strategies (like LRTs or individual vaults) quickly reach capacity limits
   </Card>
   
-  <Card title="Architectural Advantages" icon="cubes">
-    The system is built for infinite scalability through:
-
-    
-    • Single minting contract with unified liquidity 
-    
-    • Modular vault architecture with individual caps
-    
-    • Multiple vault managers (both internal and external)
-    
-    • Cross-chain interoperability
-    
-    • Insurance fund for risk management
+  <Card title="Chain Constraints" icon="link-slash">
+    Solutions limited to one blockchain cannot tap into cross-chain opportunities
+  </Card>
+  
+  <Card title="Network Fragmentation" icon="puzzle-piece">
+    Multiple tokens for different strategies fragment liquidity and reduce utility
   </Card>
 </CardGroup>
 
-## Minting Contract Architecture
+## maxBTC's Horizontal Scaling Solution
+
+**Unified Asset, Multiple Strategies**
+
+maxBTC maintains a single liquid asset while distributing risk and yield generation across multiple underlying strategies:
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>JLP BTC Neutral ($500M capacity)</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Future TradFi strategies ($100B+ potential)</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Cross-exchange arbitrage opportunities</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Multi-chain yield sources</span>
+  </div>
+</div>
+
+**Architectural Advantages**
+
+The system is built for infinite scalability through:
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Single minting contract with unified liquidity</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Modular vault architecture with individual caps</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Multiple vault managers (both internal and external)</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Cross-chain interoperability</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Insurance fund for risk management</span>
+  </div>
+</div>
+
+## Single Asset, Infinite Strategies Architecture
 
 <img src="/images/maxBTCmintingContract.png" alt="maxBTC Minting Contract Architecture" className="w-full rounded-lg mb-4" />
 
-The maxBTC minting contract forms the core of our horizontal scaling approach. It:
+### Network Effects of a Single Asset
 
-- Acts as a single point of entry for deposits and minting
-- Manages multiple underlying vaults through a standardized interface
-- Optimizes capital allocation across strategies based on yield and risk parameters
-- Maintains a unified token representation regardless of the underlying yield source
+The maxBTC minting contract forms the core of our horizontal scaling approach, creating powerful network effects through a unified architecture:
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Single Point of Entry</strong>: All maxBTC tokens originate from one central minting contract, acting as the sole entry point for deposits while managing multiple underlying vaults through a standardized interface</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Unified DEX Liquidity</strong>: Concentrates liquidity in a single asset rather than fragmenting across multiple tokens, creating deeper markets and enabling instant entry/exit</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Optimized Capital Allocation</strong>: Automatically distributes capital across strategies based on yield and risk parameters while maintaining unified token representation</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>DeFi Integrations</strong>: Simplifies integration across lending platforms, yield aggregators, and other DeFi protocols</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Arbitrage Protection</strong>: Helps protect the BTC peg and keeps entry/exit costs minimal through smart routing</span>
+  </div>
+</div>
+
+### Scalable Vault Architecture
+
+maxBTC's modular vault architecture enables infinite scalability by treating each yield strategy as an independent vault that can operate on any blockchain while contributing to the same unified token. This approach allows for specialized management of different strategies while maintaining transparency and risk isolation.
+
+<CardGroup cols={2}>
+  <Card title="Every Strategy is a Vault" icon="vault" iconType="duotone">
+    Each yield strategy operates as an independent vault that can exist on any chain while contributing to the same maxBTC token.
+  </Card>
+  
+  <Card title="Multiple Vault Managers" icon="users-gear" iconType="duotone">
+    Distributed management enables specialized expertise for different strategies while maintaining unified asset representation.
+  </Card>
+
+  <Card title="Individual Strategy Caps" icon="shield" iconType="duotone">
+    Each vault has dedicated caps and insurance deposits to manage risk while allowing the overall protocol to scale infinitely.
+  </Card>
+  
+  <Card title="On-Chain Transparency" icon="eye" iconType="duotone">
+    Full transparency with on-chain vault reallocations and management, not a black-box hedge fund approach.
+  </Card>
+</CardGroup>
 
 ## Strategy Expansion Process
 
@@ -67,6 +138,22 @@ As maxBTC grows, new strategies can be integrated through a defined governance p
 
 ## Current and Future Capacity
 
+Understanding maxBTC's capacity requires distinguishing between **strategy capacity** (how much maxBTC can deploy) and **underlying pool size** (total available liquidity):
+
+<CardGroup cols={2}>
+  <Card title="Strategy Capacity" icon="gauge" iconType="duotone">
+    **$500M for JLP BTC Neutral** - Maximum amount maxBTC can deploy while maintaining target risk/return profile and liquidity requirements.
+  </Card>
+  
+  <Card title="Underlying Pool Size" icon="droplet" iconType="duotone">
+    **$1.75B Jupiter JLP Pool** - Total liquidity available in the underlying pool that multiple participants can access.
+  </Card>
+</CardGroup>
+
+<div className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+  <strong>Why the difference?</strong> maxBTC's capacity is limited by capital efficiency (70/30 deployment ratio), risk management requirements, and the need to maintain instant liquidity for withdrawals.
+</div>
+
 <CardGroup cols={1}>
   <Card title="Strategy Capacity Overview">
     <div className="overflow-x-auto">
@@ -74,7 +161,7 @@ As maxBTC grows, new strategies can be integrated through a defined governance p
         <thead>
           <tr className="border-b-2 border-purple-200 dark:border-purple-900">
             <th className="p-2 text-left">Strategy</th>
-            <th className="p-2 text-left">Current Capacity</th>
+            <th className="p-2 text-left">maxBTC Capacity</th>
             <th className="p-2 text-left">Expected APY</th>
             <th className="p-2 text-left">Status</th>
           </tr>
@@ -112,22 +199,123 @@ As maxBTC grows, new strategies can be integrated through a defined governance p
   </Card>
   
   <Card title="Yield Optimization" icon="arrow-trend-up">
-    Ability to shift capital to highest-yielding strategies as market conditions change
+    Dynamic capital allocation to highest-yielding strategies as market conditions change
   </Card>
   
   <Card title="Unlimited Capacity" icon="infinity">
     No theoretical upper limit on total capacity due to multi-strategy approach
   </Card>
   
-  <Card title="Network Effects" icon="network-wired">
-    Increased adoption drives DeFi integration and utility expansion
-  </Card>
-  
   <Card title="User Simplicity" icon="user">
     Complex scaling happens behind the scenes while users hold a single asset
   </Card>
   
-  <Card title="Risk Management" icon="shield-check">
-    Each strategy has its own risk parameters and insurance allocations
+  <Card title="Strategy Specialization" icon="users-gear">
+    Each vault manager can focus on their area of expertise while contributing to unified yield
+  </Card>
+  
+  <Card title="Gradual Risk Introduction" icon="shield-check">
+    New strategies start with conservative caps that increase with proven performance
   </Card>
 </CardGroup>
+
+## Market Opportunity
+
+Perpetual markets have found product-market fit in crypto and are here to stay. These markets fundamentally need liquidity and reward liquidity providers with higher rates than lower-risk options like staking and lending.
+
+However, these liquidity pools lack clear directional exposure to desired assets (e.g., Jupiter JLP pool represents a mix of BTC, ETH, SOL, and USDC/T) and require active management.
+
+maxBTC brings superior yields generated by perpetual markets' liquidity pools to users who prefer clear directional exposure to Bitcoin.
+
+### Total Addressable Market
+
+Current on-chain BTC yield market is $4B+ overall:
+
+<div className="space-y-3 mb-6">
+  <div>
+    <div className="flex justify-between mb-1">
+      <span className="text-sm font-medium">wBTC market on Aave</span>
+      <span className="text-sm font-medium">$3.5B</span>
+    </div>
+    <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+      <div className="bg-amber-500 h-2 rounded-full" style={{ width: '87.5%' }}></div>
+    </div>
+  </div>
+  
+  <div>
+    <div className="flex justify-between mb-1">
+      <span className="text-sm font-medium">Pendle BTC pools</span>
+      <span className="text-sm font-medium">$200M+</span>
+    </div>
+    <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+      <div className="bg-amber-400 h-2 rounded-full" style={{ width: '5%' }}></div>
+    </div>
+  </div>
+  
+  <div>
+    <div className="flex justify-between mb-1">
+      <span className="text-sm font-medium">Other platforms</span>
+      <span className="text-sm font-medium">$300M+</span>
+    </div>
+    <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+      <div className="bg-amber-600 h-2 rounded-full" style={{ width: '7.5%' }}></div>
+    </div>
+  </div>
+</div>
+
+### Current Market Limitations
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div>
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-1.5 h-1.5 bg-amber-400 rounded-full"></div>
+      <span className="font-semibold text-sm">Points vs Real Yield</span>
+    </div>
+    <p className="text-sm text-gray-600 dark:text-gray-400">
+      Most BTC LRTs offer only points-based yield with uncertain long-term value rather than actual BTC yield.
+    </p>
+  </div>
+  
+  <div>
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-1.5 h-1.5 bg-amber-400 rounded-full"></div>
+      <span className="font-semibold text-sm">Low Returns</span>
+    </div>
+    <p className="text-sm text-gray-600 dark:text-gray-400">
+      BTC LST yield went down from 8% to 2% recently, and existing BTC vaults typically generate only 5-7% APY, significantly lower than maxBTC's 10%+ target.
+    </p>
+  </div>
+  
+  <div>
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-1.5 h-1.5 bg-amber-400 rounded-full"></div>
+      <span className="font-semibold text-sm">Limited Composability</span>
+    </div>
+    <p className="text-sm text-gray-600 dark:text-gray-400">
+      Many high-yield BTC options lack DeFi composability, restricting their use as collateral or in other applications.
+    </p>
+  </div>
+</div>
+
+### maxBTC's Competitive Advantages
+
+<div className="space-y-2 mb-8">
+  <div className="flex items-center gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0"></div>
+    <span><strong>Superior APY</strong> - 10%+ sustainable BTC-denominated yield compared to other options</span>
+  </div>
+  <div className="flex items-center gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0"></div>
+    <span><strong>Yield comes in BTC</strong>, not points or inflationary tokens</span>
+  </div>
+  <div className="flex items-center gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0"></div>
+    <span><strong>Full DeFi composability</strong> - can be used as collateral for additional yield or hedging</span>
+  </div>
+  <div className="flex items-center gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0"></div>
+    <span><strong>Low risk of negative APR</strong> due to diversified strategy design</span>
+  </div>
+</div>
+ 
+ 

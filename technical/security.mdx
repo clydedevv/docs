@@ -17,29 +17,70 @@ Security is a core consideration in maxBTC's design. This document outlines the 
   </Card>
 </CardGroup>
 
-### Multisig Scope
+### Multi-sig Operations
 
-The multisig is responsible for critical operations:
-- Buying/selling JLP tokens
-- Token transfers to/from centralized exchanges
-- Whitelisting approved addresses
-- Approving bot execution permissions
+The multi-sig wallet is responsible for:
 
-## API Key Management
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Buying/selling JLP tokens</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Token transfers to/from centralized exchanges</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Whitelisting approved addresses</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Approving bot execution permissions</span>
+  </div>
+</div>
 
-For CEX integrations:
-- IPs are strictly whitelisted
-- Trading permissions are minimized to only necessary actions
-- Read-only keys are used for monitoring where possible
-- Keys are stored securely and rotated regularly
+### CEX Security Controls
 
-## Bot Security
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>IPs are strictly whitelisted</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Trading permissions are minimized to only necessary actions</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Read-only keys are used for monitoring where possible</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Keys are stored securely and rotated regularly</span>
+  </div>
+</div>
 
-Automated bot accounts have restricted permissions:
-- Limited to specific actions (e.g., rebalancing within predefined parameters)
-- Cannot withdraw to unauthorized addresses
-- Operations are logged and monitored
-- Abnormal activity triggers alerts
+### Bot Permissions
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Limited to specific actions (e.g., rebalancing within predefined parameters)</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Cannot withdraw to unauthorized addresses</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Operations are logged and monitored</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Abnormal activity triggers alerts</span>
+  </div>
+</div>
 
 ## Technical Risk Mitigations
 

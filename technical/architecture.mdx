@@ -21,14 +21,26 @@ The maxBTC server is built in Rust and follows a modular design pattern. Communi
 
 <img src="/images/server-architecture.png" alt="Server Architecture" className="w-full rounded-lg my-4" />
 
-### Key Technologies
+### Technology Stack
 
-The application is built with:
-
-- **Axum** for HTTP endpoints and API
-- **Tokio** for asynchronous background processes
-- **MongoDB** for persistent state management
-- **Direct RPC/WebSocket** connections to blockchain networks and exchanges
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Axum</strong> for HTTP endpoints and API</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Tokio</strong> for asynchronous background processes</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>MongoDB</strong> for persistent state management</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Direct RPC/WebSocket</strong> connections to blockchain networks and exchanges</span>
+  </div>
+</div>
 
 ## System Architecture Diagram
 
@@ -56,12 +68,32 @@ graph TD
 
 Each component of the maxBTC system is implemented as a dedicated microservice:
 
-- **Input Module**: Processes user deposits and manages asset allocation
-- **Exit Module**: Handles withdrawals and redemptions
-- **CeFi-DeFi Exposure Manager**: Balances positions across centralized and decentralized venues
-- **Fee Hedge**: Converts collected trading fees to BTC
-- **Collateral Rebalancing**: Maintains delta neutrality as market conditions change
-- **Collateral Management**: Optimizes capital allocation across venues
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Input Module</strong>: Processes user deposits and manages asset allocation</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Exit Module</strong>: Handles withdrawals and redemptions</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>CeFi-DeFi Exposure Manager</strong>: Balances positions across centralized and decentralized venues</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Fee Hedge</strong>: Converts collected trading fees to BTC</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Collateral Rebalancing</strong>: Maintains delta neutrality as market conditions change</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Collateral Management</strong>: Optimizes capital allocation across venues</span>
+  </div>
+</div>
 
 ## Microservice Integration Matrix
 

@@ -26,36 +26,89 @@ maxBTC operates across multiple blockchain networks to optimize yield generation
 
 ### Ethereum Integration
 
-**Primary Functions:**
-- User deposit acceptance (wBTC, ETH, USDC, USDT)
-- Vault contract for asset custody
-- Asset forwarding to custody addresses
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>User deposit acceptance (wBTC, ETH, USDC, USDT)</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Vault contract for asset custody</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Asset forwarding to custody addresses</span>
+  </div>
+</div>
 
-**Smart Contracts:**
-- Vault contracts for secure asset custody
-- Proxy contracts for asset forwarding
-- Cross-chain messaging coordination
+### Additional Networks
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Vault contracts for secure asset custody</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Proxy contracts for asset forwarding</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span>Cross-chain messaging coordination</span>
+  </div>
+</div>
 
 ### Solana Integration
 
-**Jupiter Perpetuals Integration:**
+**Primary Yield Generation:**
 
-Solana serves as the primary yield generation engine through deep integration with Jupiter's perpetual trading infrastructure:
+Solana serves as the primary yield generation engine through Jupiter's perpetual trading infrastructure, providing access to sustainable DeFi yield opportunities.
 
-- **JLP Pool Access**: Direct integration with Jupiter's $1.75B+ liquidity pool for sustainable yield generation
-- **Multi-Asset Exposure**: Automatic exposure management across SOL, ETH, BTC, USDC, and USDT within the pool
-- **Real-Time Yield Capture**: 75% of all trading fees, liquidations, and price impact distributed to liquidity providers
-- **Automated Rebalancing**: Dynamic position adjustments based on pool composition and trader positioning
-- **Cross-Chain Bridging**: Seamless USDC transfers from Binance for optimal capital deployment
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Jupiter Integration</strong>: Deep integration with Jupiter's perpetual market ecosystem for yield generation</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Multi-sig Management</strong>: Secure asset management through distributed key controls</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Cross-Chain Bridging</strong>: Seamless USDC transfers for optimal capital deployment</span>
+  </div>
+</div>
+
+<Note>
+  For detailed information about Jupiter JLP integration and strategy implementation, see our <a href="/strategy/overview" className="text-amber-600 hover:text-amber-500 font-medium">JLP BTC Neutral Strategy</a> documentation.
+</Note>
 
 ### Neutron Integration
 
 **Cross-Chain Coordination:**
-- **maxBTC Token Minting**: Primary network where maxBTC tokens are minted and managed
-- **Accelerated Exit Buffer**: ~10% of wBTC deposits maintained for instant liquidity
-- **Duality Integration**: Single-sided wBTC limit orders at 1-2% premium for atomic exits
-- **Cross-Chain Routing**: Available via Skip Go, LiFi, and other routing protocols
-- **Fast Finality**: 30-second settlement to Ethereum and other networks vs 30-minute reverse flow
+
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>maxBTC Token Minting</strong>: Primary network where maxBTC tokens are minted and managed</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Accelerated Exit Buffer</strong>: ~10% of wBTC deposits maintained for instant liquidity</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Duality Integration</strong>: Single-sided wBTC limit orders at 1-2% premium for atomic exits</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Cross-Chain Routing</strong>: Available via Skip Go, LiFi, and other routing protocols</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Fast Finality</strong>: 30-second settlement to Ethereum and other networks vs 30-minute reverse flow</span>
+  </div>
+</div>
 
 ## Cross-Chain Asset Flow
 
@@ -100,9 +153,20 @@ sequenceDiagram
 
 ### Multi-Signature Implementation
 
-- **Geographic Distribution**: Key holders distributed across different jurisdictions
-- **Threshold Requirements**: Multi-sig authorization for all critical operations
-- **Backup Systems**: Multiple execution pathways for redundancy
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Geographic Distribution</strong>: Key holders distributed across different jurisdictions</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Threshold Requirements</strong>: Multi-sig authorization for all critical operations</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Backup Systems</strong>: Multiple execution pathways for redundancy</span>
+  </div>
+</div>
 
 ### Asset Custody
 
@@ -120,10 +184,24 @@ sequenceDiagram
 
 Future blockchain integrations planned:
 
-- **Bitcoin Network**: Native BTC deposit support
-- **Arbitrum**: Additional Ethereum L2 support  
-- **Base**: Coinbase ecosystem integration
-- **Polygon**: Enhanced cross-chain liquidity
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Bitcoin Network</strong>: Native BTC deposit support</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Arbitrum</strong>: Additional Ethereum L2 support</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Base</strong>: Coinbase ecosystem integration</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Polygon</strong>: Enhanced cross-chain liquidity</span>
+  </div>
+</div>
 
 <CardGroup cols={2}>
   <Card title="System Architecture" icon="server" href="/technical/architecture">

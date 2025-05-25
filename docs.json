@@ -18,7 +18,7 @@
       "dark": "#0C0C0C"
     }
   },
-  "theme": "maple",
+  "theme": "mint",
   "topbarLinks": [
     {
       "name": "Website",
@@ -47,8 +47,8 @@
         "group": "Overview",
         "pages": [
           "introduction",
-          "overview/liquidity",
           "overview/horizontal_scaling",
+          "overview/liquidity",
           "overview/roadmap"
         ]
       },
@@ -59,7 +59,6 @@
             "group": "JLP BTC Neutral",
             "pages": [
               "strategy/overview",
-              "strategy/technical_details",
               "strategy/faq",
               "strategy/risks"
             ]

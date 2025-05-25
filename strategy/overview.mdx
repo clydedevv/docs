@@ -1,7 +1,7 @@
 ---
-title: "JLP BTC Neutral Overview"
+title: "JLP BTC Neutral Strategy"
 icon: "chart-line"
-description: "maxBTC's flagship yield strategy delivering sustainable BTC returns"
+description: "Complete overview and technical implementation of maxBTC's flagship yield strategy"
 ---
 
 ## Strategy Workflow
@@ -19,7 +19,7 @@ The JLP BTC Neutral strategy deploys capital in a 70/30 split:
 
 <CardGroup cols={3}>
   <Card title="JLP Pool Fees" icon="globe" iconType="duotone">
-    75% of trading fees from Jupiter perpetuals, including opening/closing fees, price impact, and liquidations
+    Jupiter distributes 75% of trading fees to liquidity providers, including opening/closing fees, price impact, and liquidations
   </Card>
   
   <Card title="Rebalancing Arbitrage" icon="clock" iconType="duotone">
@@ -31,9 +31,85 @@ The JLP BTC Neutral strategy deploys capital in a 70/30 split:
   </Card>
 </CardGroup>
 
+
+## Jupiter Integration Details
+
+
+```mermaid
+graph TD;
+    subgraph "Network Bridges"
+        B1["BTC Network<br/>(accepts BTC)"]
+        B2["ETH Network<br/>(accepts wBTC, ETH,<br/>USDC, USDT)"]
+        B3["SOL Network<br/>(accepts SOL, wETH,<br/>USDC, USDT)"]
+    end
+    
+    NW["Neutron Wallet"]
+    SC["Smart Contract<br/>(Neutron Network)"]
+    
+    B1 & B2 & B3 -.->|"Token Info"| SC
+    SC -->|"Issues Tokens"| NW
+    B1 & B2 & B3 -->|"Direct Asset Transfer"| CEX
+    
+    CEX["CEXs (Binance/OKX/Bybit)<br/>Used for Hedging"]
+    
+    CEX --> |"70% Assets<br/>(USDC/USDT)"| MW["Multi-sig Wallet"]
+    MW --> PS["Perpetual Strategy<br/>(JLP/GMX/Hyperliquid)"]
+    
+    %% Add styling with better contrast
+    style CEX fill:#e8f4fd,stroke:#1e40af,stroke-width:2px,color:#000
+    style MW fill:#f0f9ff,stroke:#0c4a6e,stroke-width:2px,color:#000
+    style PS fill:#ecfdf5,stroke:#166534,stroke-width:2px,color:#000
+    style SC fill:#fef7ff,stroke:#7c2d12,stroke-width:2px,color:#000
+    style NW fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#000
+    
+    %% Add notes
+    subgraph Custody
+    CEX
+    end
+    note["Note: CEX assets held by<br/>custodians (Ceffu/Fireblock/Copper)"]
+    Custody --- note
+```
+
+
+<CardGroup cols={2}>
+  <Card title="JLP Deployment (70%)" icon="coins" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Capital deployed to Jupiter's perpetual DEX liquidity pool</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Generates yield through trading fees, liquidations, and price impact</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Automatically compounds returns within the pool</span>
+      </li>
+    </ul>
+  </Card>
+
+  <Card title="CEX Hedging (30%)" icon="scale-balanced" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Used as collateral at centralized venues (Binance)</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Creates short positions on SOL/ETH to neutralize exposure</span>
+      </li>
+      <li className="flex items-start">
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
+        <span>Leverages long BTC to maintain effective 1:1 BTC exposure</span>
+      </li>
+    </ul>
+  </Card>
+</CardGroup>
+
 ## Historical Performance
 
-Over a conclusive three-month live test run beginning on December 24, the strategy delivered a consistent 20% APY in real-world conditions, unequivocally validating our expected performance.
+Over a conclusive three-month live test run beginning on December 24, the strategy delivered an average 20% APY in real-world conditions, validating our expected performance range.
 
 <img src="/images/historical-performance.png" alt="Historical Performance" className="w-full rounded-lg my-4" />
 
@@ -41,10 +117,24 @@ Over a conclusive three-month live test run beginning on December 24, the strate
 
 <img src="/images/strategyAPYBreakdown.png" alt="Strategy APY Breakdown" className="w-full rounded-lg my-4" />
 
-- **Expected APY:** 10% (bear market) to 20% (bull market)
-- **Strategy Capacity:** $500M
-- **Pool Yield:** 5-40% JLP pool yield converted to BTC with 0-4% funding rate cost
-- **Market Conditions:** Performance typically improves during market crashes due to increased DEX fees
+<div className="space-y-2 mb-6">
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Expected APY Range</strong>: 10-20% depending on market conditions</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Strategy Capacity</strong>: $500M</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Pool Yield</strong>: 5-40% JLP pool yield converted to BTC with 0-4% funding rate cost</span>
+  </div>
+  <div className="flex items-start gap-3 text-sm">
+    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
+    <span><strong>Market Conditions</strong>: Performance typically improves during market crashes due to increased DEX fees</span>
+  </div>
+</div>
 
 Future maxBTC strategies (e.g., CHF carry trade) will scale up to $100B+ at 3-7% APY.
 
@@ -68,11 +158,6 @@ Future maxBTC strategies (e.g., CHF carry trade) will scale up to $100B+ at 3-7%
   </Card>
 </CardGroup>
 
-## Risk Management
-
-- **Delta-Neutral Position**: The strategy is delta-neutral to everything except BTC, insulating it from price movements in other assets.
-- **Liquidation Protection**: BTC price would need to drop ~45% in a short time period to trigger liquidation, providing substantial safety margin.
-
 <Note>
-  For a comprehensive analysis of all risk factors and our robust control mechanisms, please see our detailed <a href="/strategy/risks" className="text-amber-600 hover:text-amber-500 font-medium">Risk Management Framework</a>.
+  For a comprehensive analysis of all risk factors and control mechanisms, see our detailed <a href="/strategy/risks" className="text-amber-600 hover:text-amber-500 font-medium">Risk Management Framework</a>.
 </Note>
