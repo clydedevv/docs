@@ -11,18 +11,20 @@ The JLP BTC Neutral strategy deploys capital in a 70/30 split:
 <img src="/images/howMaxBTCWorks.png" alt="JLP BTC Neutral Strategy Flow" className="w-full rounded-lg my-4" />
 
 1. **70% to Jupiter JLP pool**: Capital is deployed to a mix of SOL, ETH, BTC, USDC, and USDT in the pool
-2. **30% to hedging positions**: Used as collateral at centralized venues to:
+   - Generates yield through trading fees, liquidations, and price impact
+   - Automatically compounds returns within the pool
+2. **30% to hedging positions**: Used as collateral at centralized venues (Binance) to:
    - Short ETH, SOL to neutralize non-BTC exposure
    - Leverage long BTC to maintain effective 1:1 BTC price exposure
 
 ## Yield Sources
 
 <CardGroup cols={3}>
-  <Card title="JLP Pool Fees" icon="globe" iconType="duotone">
+  <Card title="JLP Pool Fees" icon="coins" iconType="duotone">
     Jupiter distributes 75% of trading fees to liquidity providers, including opening/closing fees, price impact, and liquidations
   </Card>
   
-  <Card title="Rebalancing Arbitrage" icon="clock" iconType="duotone">
+  <Card title="Rebalancing Arbitrage" icon="arrows-rotate" iconType="duotone">
     Capturing market inefficiencies and arbitrage opportunities between venues during periodic rebalancing
   </Card>
   
@@ -32,7 +34,7 @@ The JLP BTC Neutral strategy deploys capital in a 70/30 split:
 </CardGroup>
 
 
-## Jupiter Integration Details
+## Strategy Architecture
 
 
 ```mermaid
@@ -70,42 +72,6 @@ graph TD;
     Custody --- note
 ```
 
-
-<CardGroup cols={2}>
-  <Card title="JLP Deployment (70%)" icon="coins" iconType="duotone">
-    <ul className="mt-2 space-y-1">
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Capital deployed to Jupiter's perpetual DEX liquidity pool</span>
-      </li>
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Generates yield through trading fees, liquidations, and price impact</span>
-      </li>
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Automatically compounds returns within the pool</span>
-      </li>
-    </ul>
-  </Card>
-
-  <Card title="CEX Hedging (30%)" icon="scale-balanced" iconType="duotone">
-    <ul className="mt-2 space-y-1">
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Used as collateral at centralized venues (Binance)</span>
-      </li>
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Creates short positions on SOL/ETH to neutralize exposure</span>
-      </li>
-      <li className="flex items-start">
-        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 mr-2 flex-shrink-0"></div>
-        <span>Leverages long BTC to maintain effective 1:1 BTC exposure</span>
-      </li>
-    </ul>
-  </Card>
-</CardGroup>
 
 ## Historical Performance
 
