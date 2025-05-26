@@ -4,73 +4,27 @@ icon: "chart-line"
 description: "Complete overview and technical implementation of maxBTC's flagship yield strategy"
 ---
 
+maxBTC generates yield from Jupiter's JLP pool while maintaining pure BTC exposure through hedging positions on Binance, delivering approximately 10% APY based on historical performance.
+
 ## Strategy Workflow
 
 The JLP BTC Neutral strategy deploys capital in a 70/30 split:
 
 <img src="/images/howMaxBTCWorks.png" alt="JLP BTC Neutral Strategy Flow" className="w-full rounded-lg my-4" />
 
-1. **70% to Jupiter JLP pool**: Capital is deployed to a mix of SOL, ETH, BTC, USDC, and USDT in the pool
-   - Generates yield through trading fees, liquidations, and price impact
-   - Automatically compounds returns within the pool
-2. **30% to hedging positions**: Used as collateral at centralized venues (Binance) to:
-   - Short ETH, SOL to neutralize non-BTC exposure
-   - Leverage long BTC to maintain effective 1:1 BTC price exposure
-
-## Yield Sources
-
-<CardGroup cols={3}>
-  <Card title="JLP Pool Fees" icon="coins" iconType="duotone">
-    Jupiter distributes 75% of trading fees to liquidity providers, including opening/closing fees, price impact, and liquidations
+<CardGroup cols={2}>
+  <Card title="70% to Jupiter JLP Pool" icon="coins" iconType="duotone">
+    Capital is deployed to a mix of SOL, ETH, BTC, USDC, and USDT in the pool
+    - Generates yield through trading fees, liquidations, and price impact
+    - Automatically compounds returns within the pool
   </Card>
   
-  <Card title="Rebalancing Arbitrage" icon="arrows-rotate" iconType="duotone">
-    Capturing market inefficiencies and arbitrage opportunities between venues during periodic rebalancing
-  </Card>
-  
-  <Card title="Funding Rates" icon="arrow-trend-up" iconType="duotone">
-    Strategic management of funding rates from perpetual futures markets during volatile periods
+  <Card title="30% to Hedging Positions" icon="shield-halved" iconType="duotone">
+    Used as collateral at centralized venues (Binance) to:
+    - Short ETH, SOL to neutralize non-BTC exposure
+    - Leverage long BTC to maintain effective 1:1 BTC price exposure
   </Card>
 </CardGroup>
-
-
-## Strategy Architecture
-
-
-```mermaid
-graph TD;
-    subgraph "Network Bridges"
-        B1["BTC Network<br/>(accepts BTC)"]
-        B2["ETH Network<br/>(accepts wBTC, ETH,<br/>USDC, USDT)"]
-        B3["SOL Network<br/>(accepts SOL, wETH,<br/>USDC, USDT)"]
-    end
-    
-    NW["Neutron Wallet"]
-    SC["Smart Contract<br/>(Neutron Network)"]
-    
-    B1 & B2 & B3 -.->|"Token Info"| SC
-    SC -->|"Issues Tokens"| NW
-    B1 & B2 & B3 -->|"Direct Asset Transfer"| CEX
-    
-    CEX["CEXs (Binance/OKX/Bybit)<br/>Used for Hedging"]
-    
-    CEX --> |"70% Assets<br/>(USDC/USDT)"| MW["Multi-sig Wallet"]
-    MW --> PS["Perpetual Strategy<br/>(JLP/GMX/Hyperliquid)"]
-    
-    %% Add styling with better contrast
-    style CEX fill:#e8f4fd,stroke:#1e40af,stroke-width:2px,color:#000
-    style MW fill:#f0f9ff,stroke:#0c4a6e,stroke-width:2px,color:#000
-    style PS fill:#ecfdf5,stroke:#166534,stroke-width:2px,color:#000
-    style SC fill:#fef7ff,stroke:#7c2d12,stroke-width:2px,color:#000
-    style NW fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#000
-    
-    %% Add notes
-    subgraph Custody
-    CEX
-    end
-    note["Note: CEX assets held by<br/>custodians (Ceffu/Fireblock/Copper)"]
-    Custody --- note
-```
 
 
 ## Historical Performance
@@ -102,8 +56,6 @@ Over a conclusive three-month live test run beginning on December 24, the strate
   </div>
 </div>
 
-Future maxBTC strategies (e.g., CHF carry trade) will scale up to $100B+ at 3-7% APY.
-
 ## Strategy Advantages
 
 <CardGroup cols={2}>
@@ -119,8 +71,8 @@ Future maxBTC strategies (e.g., CHF carry trade) will scale up to $100B+ at 3-7%
     The strategy actually benefits from market volatility through increased trading fees in the Jupiter pool and higher opportunities for rebalancing arbitrage.
   </Card>
   
-  <Card title="Sustainable Yield Source" icon="seedling" iconType="duotone">
-    Unlike points-based rewards or temporary incentives, this yield comes from real trading activity and market inefficiencies that are inherent to crypto markets.
+  <Card title="Sustainable Yield Source" icon="infinity" iconType="duotone">
+    Unlike points-based rewards or temporary incentives, this yield comes from real trading activity that are inherent to crypto markets.
   </Card>
 </CardGroup>
 
