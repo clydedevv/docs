@@ -64,14 +64,6 @@
             ]
           }
         ] 
-      },
-      {
-        "group": "Technical Documentation",
-        "pages": [
-          "technical/architecture",
-          "technical/blockchain_integrations",
-          "technical/security"
-        ]
       }
     ]
   },
