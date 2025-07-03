@@ -55,14 +55,9 @@
       {
         "group": "BTC yield strategies",
         "pages": [
-          {
-            "group": "JLP BTC Neutral",
-            "pages": [
-              "strategy/overview",
-              "strategy/faq",
-              "strategy/risks"
-            ]
-          }
+          "strategy/overview",
+          "strategy/faq",
+          "strategy/risks"
         ] 
       }
     ]
