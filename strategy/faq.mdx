@@ -1,83 +1,190 @@
 ---
-title: "Strategy FAQ"
-description: "Frequently asked questions about the JLP BTC Neutral strategy"
+title: "FAQ"
+description: "Frequently asked questions about maxBTC and Structured"
 icon: "circle-question"
 ---
 
-## Basic Questions
+## About maxBTC
 
 <AccordionGroup>
-  <Accordion title="What is maxBTC and how do I use it?">
-    maxBTC is a liquid, yield-bearing BTC asset that maintains 1:1 BTC price exposure while generating sustainable yield targeting ~10% APY at scale. You can:
+  <Accordion title="What is maxBTC?">
+    maxBTC is liquid, yield-bearing Bitcoin that offers sustainable returns to its holders through proven BTC-denominated strategies.
     
-    - **Hold it**: Simply hold maxBTC in your wallet to earn BTC-denominated yield automatically
-    - **Use in DeFi**: Use maxBTC as collateral for lending, liquidity provision, or other DeFi strategies
-    - **Exit anytime**: Trade maxBTC on DEXs or redeem it for the underlying BTC assets
+    **Key features:**
     
-    Unlike traditional BTC vaults or hedge funds, maxBTC gives you instant liquidity and DeFi composability.
+    - **Real BTC Yield:** Attractive BTC-denominated yield from a portfolio of tested strategies, not emissions
+    - **LST-like Form Factor:** Composable design that enables holders to leverage their BTC through DeFi integrations
+    - **Liquid:** Withdraw anytime or trade via DEXs with minimal slippage
+    - **Transparent and Secure:** Clear strategy mechanics and risk metrics
+    - **Scalable:** Supports multiple strategies without manual capital rotation
   </Accordion>
 
   <Accordion title="What makes maxBTC different from other BTC yield products?">
-    maxBTC stands out in several key ways:
-    
-    - **Real yield**: Earns actual BTC-denominated returns (targeting ~10% APY at scale), not points or inflationary tokens
-    - **Liquid**: Can be traded on DEXs or used as collateral in DeFi, unlike traditional BTC vaults
-    - **Scalable**: Designed to expand across multiple strategies without fragmenting liquidity
-    - **Transparent**: All strategy mechanics are public, not a black-box hedge fund approach
-    - **Risk-minimized**: Delta-neutral design protects against everything except BTC price movements
+    maxBTC delivers real BTC yield from proven strategies, not emissions. It is liquid and composable for DeFi, scales across multiple strategies without fragmenting liquidity, and offers transparent mechanics with risk controls.
   </Accordion>
 
-  <Accordion title="Is this safe? What are the main risks?">
-    maxBTC is designed with risk-minimization as a priority. For comprehensive risk analysis, see our [Risk Management Framework](/strategy/risks).
+  <Accordion title="What is real yield?">
+    **Real yield** refers to returns that are generated from actual, sustainable sources (like trading fees) rather than from inflationary token emissions, points systems, or other artificial incentives.
+  </Accordion>
+
+  <Accordion title="How does maxBTC generate yield?">
+    maxBTC generates yield through tested on- and off-chain strategies. The initial strategy underlying maxBTC is based on the Jupiter Liquidity Provider (JLP) pool, which backs leveraged positions on Jupiter Perps and earns fees from trader activity.
     
-    **Key safety features:**
-    - Delta-neutral to everything except BTC (maintains 1x BTC exposure)
-    - Multi-sig security and geographic distribution of key holders
-    - Insurance fund support and individual strategy caps
-    - BTC would need to drop ~45% relative to other assets before liquidation risk
+    Learn more: [JLP BTC Neutral Strategy](/strategy/overview)
+  </Accordion>
+
+  <Accordion title="How scalable is maxBTC?">
+    maxBTC is designed for horizontal scaling. It keeps all liquidity unified in one token while distributing risk and yield across multiple strategies. New strategies can be added without fragmenting liquidity or requiring new tokens.
     
-    **Main risks include smart contract, exchange, and strategy risks** - all detailed in our risk documentation.
+    The minting contract coordinates multiple vaults through a single entry point. Deposits flow into the selected strategy, and all performance aggregates back into maxBTC. This ensures one liquid market and unified DEX liquidity.
+    
+    Learn more: [Horizontal Scaling](/overview/horizontal_scaling)
+  </Accordion>
+
+  <Accordion title="Why is KYC required to mint and redeem maxBTC?">
+    KYC is required to ensure compliance with anti-money laundering (AML) laws and regulations. Because minting and redeeming involve direct interaction with Structured's vaults, verification protects both participants and the protocol by ensuring assets are not used for illicit purposes. Individuals can complete KYC through zkMe with ID and proof of address, while entities can onboard through manual verification with the Structured team.
   </Accordion>
 </AccordionGroup>
 
-## Strategy Performance Questions
+## Strategy & Risk
 
 <AccordionGroup>
-  <Accordion title="Why are returns denominated in BTC terms?">
-    The JLP Pool APY is **denominated in USD terms** on Jupiter, but **we translate returns back to BTC** for investor convenience. This gives maxBTC holders a clearer picture of their returns in terms of the asset they value most.
+  <Accordion title="What is the JLP BTC Neutral strategy?">
+    It is the first underlying strategy of maxBTC. Capital is allocated into the Jupiter JLP pool while short positions in SOL and ETH hedge non-BTC exposure. It preserves 1× BTC exposure and converts trading activity into BTC-denominated yield.
+    
+    Learn more: [JLP BTC Neutral Strategy](/strategy/overview)
   </Accordion>
 
+  <Accordion title="How does the JLP BTC Neutral strategy earn yield?">
+    **Fee types:**
+    
+    - Opening and closing fees on trades
+    - Borrowing fees paid by leveraged traders
+    - Protocol trading fees
+    - Liquidation fees
+    
+    The strategy allocates capital across two legs: approximately 70% to JLP and 30% as collateral on Ceffu, an institutional custody platform, for hedging on Binance perpetuals. The JLP side earns fees from trader activity, while the hedge neutralizes non-BTC exposure. Positions are rebalanced continuously to track pool composition and trader positioning, converting trading activity into BTC-denominated yield.
+  </Accordion>
+
+  <Accordion title="What are the expected returns?">
+    The JLP BTC Neutral strategy targets 5–10% BTC-denominated APY, based on historical performance and capacity scaling.
+    
+    <Info>
+    *APY and performance figures are based on historical data and are provided for informational purposes only.*
+    </Info>
+  </Accordion>
+
+  <Accordion title="What are the main risks?">
+    Risks include smart contract risk, liquidation risk, exchange risk, funding rate risk, and liquidity and withdrawal risk.
+    
+    Learn more: [Risk & Controls](/strategy/risks)
+  </Accordion>
+
+  <Accordion title="How big would a price move need to be to trigger liquidation?">
+    Liquidation would require a BTC price drop of around 45% relative to SOL or ETH before rebalancing. Historically, BTC's largest weekly decline since 2019 has been 33.52%, below this threshold.
+  </Accordion>
+
+  <Accordion title="What is the strategy's withdrawal capacity?">
+    The liquidity pool can support withdrawals in the hundreds of millions of USD with ~0.3% slippage. Larger withdrawals may require scheduling or fees to manage slippage
+  </Accordion>
+
+  <Accordion title="How are funds safeguarded?">
+    Deposits are split between on-chain allocation, which is transparent and verifiable, and off-exchange custody with institutional providers. Funds are only moved to exchanges when required for strategy execution, minimizing counterparty risk.
+  </Accordion>
+
+  <Accordion title="How are underlying funds protected from exchange risk?">
+    Underlying funds are protected by limiting exchange exposure to only the unsettled balance from a 24-hour settlement cycle. In practice this balance is held in BTC, representing the net PnL of BTC, SOL, and ETH over the last 24 hours.
+    
+    About 30% of capital is allocated as collateral for hedging. The full 30% sits on exchange through a custodian, but during a given day 2-4% may remain unsettled. This caps potential exposure if an exchange were to fail before settlement.
+  </Accordion>
 </AccordionGroup>
 
-## Technical Questions
+## **Structured Points**
 
 <AccordionGroup>
-  <Accordion title="How is the position actually hedged?">
-    The strategy hedges based on:
-    1. Actual underlying tokens in the JLP pool
-    2. Net position taken by traders against the JLP pool
-
-    We hedge based on real market conditions, not target weightings. For complete technical details, see our [Strategy Overview](/strategy/overview).
+  <Accordion title="What are Structured Points?">
+    Structured Points recognize early participation. Points track activity across vaults and integrations and are updated weekly on a leaderboard.
   </Accordion>
 
-  <Accordion title="What are the strategy's fees and costs?">
-    The strategy incurs several types of fees:
-    - **Trading Fees**: When rebalancing positions or executing hedges
-    - **Funding Rates**: Paid on perpetual futures positions  
-    - **Withdrawal Fees**: When removing liquidity from the JLP pool
-    - **Operational Costs**: API calls, gas fees, etc.
-
-    All costs are already accounted for in the reported APY of ~10% at scale.
-  </Accordion>
-
-  <Accordion title="What is the strategy's capacity limit?">
-    **Current Strategy Capacity**: $500M for JLP BTC Neutral
+  <Accordion title="How are points earned?">
+    Points are distributed weekly based on holdings and activity. They can be earned by depositing into vaults, providing liquidity, or using maxBTC in supported integrations.
     
-    Limited by:
-    - JLP Pool Size (currently $1.75B on Jupiter)
-    - Position liquidity requirements
-    - Capital efficiency ratios
+    Learn more: [points.structured.money](https://points.structured.money/)
+  </Accordion>
 
-    For scaling plans beyond this capacity, see our [Horizontal Scaling](/overview/horizontal_scaling) documentation.
+  <Accordion title="What safeguards prevent abuse?">
+    Thresholds prevent balance-splitting, referral rewards benefit the referred user directly, and mechanics are applied consistently across all participants.
+  </Accordion>
+
+  <Accordion title="What are the tiers?">
+    - **Stone**: Entry tier, no multiplier.
+    - **Copper**: After two months of activity, 1.1× boost.
+    - **Future tiers**: More levels will be added as the program expands.
+  </Accordion>
+
+  <Accordion title="Where can I see my boosters, multipliers, and rank?">
+    See current multipliers, your points and ranking at [points.structured.money](https://points.structured.money/)
+  </Accordion>
+</AccordionGroup>
+
+## maxBTC vaults on Neutron
+
+<AccordionGroup>
+  <Accordion title="What is Neutron?">
+    [Neutron](https://www.neutron.org/) is a public PoS blockchain that enables BTC holders to earn sustainable yield through an expanding suite of products and services. Yield opportunities on Neutron are enabled by Neutron's built-in infrastructure, which includes its high-frequency oracle, cron module, on-chain orderbook, and more.
+  </Accordion>
+
+  <Accordion title="What is the partnership between Structured and Neutron?">
+    Structured is opening up access to maxBTC together with Neutron as part of Phase 1 of the Bitcoin Summer campaign. This phase introduces two dedicated vaults that allow participants to mint maxBTC, establish its first trading liquidity on-chain, and prepare it for advanced use cases ahead of the full protocol launch.
+  </Accordion>
+
+  <Accordion title="What is Bitcoin Summer?">
+    Bitcoin Summer is a multi-phase campaign that enables BTC holders to earn real BTC yield. Neutron has partnered with several projects to realize this vision, and Structured is participating in Phase 1 with the launch of two maxBTC vaults.
+    
+    Participants can deposit into a Bitcoin Summer vault or eligible position on Neutron to earn BTC-denominated yield along with additional rewards.
+    
+    Learn more about [Bitcoin Summer](https://docs.neutron.org/btc-summer/overview) and the [**Bitcoin Summer rewards system**](https://x.com/neutron_org/status/1965835922638774395).
+  </Accordion>
+
+  <Accordion title="What are the maxBTC Minting and Liquidity Vaults?">
+    Two maxBTC vaults are open for deposits on Neutron. Each vault accepts **WBTC**, wrapped Bitcoin on Ethereum, which connects directly to Structured's minting contracts. Deposits in both vaults are capped at **500 BTC**, with deployment to maxBTC's underlying strategy ([JLP BTC Neutral](/strategy/overview)) triggered once the cap is reached.
+    
+    - **Minting Vault:** Straightforward exposure to maxBTC. Deposits queue until the cap is reached (or end of September), then are deployed into the JLP BTC Neutral strategy.
+    - **Liquidity Vault:** Converts deposits into maxBTC and allocates them to the maxBTC/WBTC Supervault on Neutron's orderbook DEX. Depositors earn both strategy yield and market-making fees.
+    
+    Learn more: [maxBTC Vaults on Neutron](https://medium.com/@Structured/maxbtc-vaults-on-neutron-b4e6bcd17c57)
+  </Accordion>
+
+  <Accordion title="Which assets can I deposit and how?">
+    Deposits into the current vaults are made in **WBTC** from Ethereum, using Metamask or any other EVM wallet, directly via [app.neutron.org/bitcoin-summer](http://app.neutron.org/bitcoin-summer).
+    
+    Alternatively, Neutron users can access the vaults natively with a Neutron wallet by navigating to the Positions tab.
+  </Accordion>
+
+  <Accordion title="How can I participate in the vaults?">
+    Complete KYC via zkMe, deposit WBTC from Ethereum into a vault, and wait for deployment once the cap is reached. At that point, you'll receive maxBTC on Neutron and begin earning BTC-denominated yield.
+  </Accordion>
+
+  <Accordion title="Is KYC required to participate?">
+    Structured is a centralized entity and complies with applicable AML laws and regulations. All participants must complete KYC to participate in this phase and access the vaults.
+    
+    - **Individuals:** Onboard via zkMe by submitting ID and proof of address.
+    - **Entities:** [Contact the Structured team](https://t.me/Structured_EarlyAccess) directly for manual verification.
+  </Accordion>
+
+  <Accordion title="If I don't want or can't do KYC, can I still access maxBTC?">
+    Yes. You can buy and trade maxBTC on Neutron's built-in [orderbook](https://app.neutron.org/orderbook) without KYC.
+  </Accordion>
+
+  <Accordion title="What is the minimum deposit?">
+    Both vaults require a minimum of 0.0001 WBTC.
+  </Accordion>
+
+  <Accordion title="How do withdrawals work?">
+    Withdrawals are possible at any time. When withdrawing, depositors receive maxBTC on Neutron.
+  </Accordion>
+
+  <Accordion title="I'm an institutional LP. Who should I contact?">
+    Larger LPs such as funds, entities, or strategic partners can contact the Structured team directly via [Telegram](https://t.me/Structured_EarlyAccess).
   </Accordion>
 </AccordionGroup>

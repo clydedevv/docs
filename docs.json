@@ -22,23 +22,18 @@
   "topbarLinks": [
     {
       "name": "Website",
-      "url": "https://maxbtc.io"
+      "url": "https://www.structured.money/"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://app.maxbtc.io"
+    "url": "https://www.structured.money/"
   },
   "anchors": [
     {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/maxbtc"
-    },
-    {
       "name": "Twitter",
       "icon": "twitter",
-      "url": "https://twitter.com/maxbtc"
+      "url": "https://x.com/StructuredFi"
     }
   ],
   "navigation": {
@@ -49,21 +44,21 @@
           "introduction",
           "overview/horizontal_scaling",
           "overview/liquidity",
-          "overview/roadmap"
+          "overview/points"
         ]
       },
       {
         "group": "BTC yield strategies",
         "pages": [
           "strategy/overview",
-          "strategy/faq",
-          "strategy/risks"
+          "strategy/risks",
+          "strategy/faq"
         ] 
       }
     ]
   },
   "footerSocials": {
-    "twitter": "https://twitter.com/maxbtc",
+    "twitter": "https://twitter.com/structured",
     "discord": "https://discord.gg/maxbtc"
   },
   "modeToggle": {

@@ -1,89 +1,87 @@
 ---
 title: "Risks & Controls"
-description: "Understanding the risks and control mechanisms in the JLP BTC Neutral strategy"
+description: "Understand the risks and control mechanisms in the JLP BTC Neutral strategy"
 icon: "shield-exclamation"
 ---
 
-## Key Risk Factors
+# **Risks & Controls**
 
-<AccordionGroup>
-  <Accordion title="Liquidation Risk from Extreme Price Movements">
-    Short positions in SOL and ETH are used to hedge the passive long exposure to SOL and ETH held through JLP. Liquidation could occur if the price of BTC relative to SOL or ETH drops by approximately 45% before rebalancing.
+*Understand the risks and control mechanisms in the JLP BTC Neutral strategy.*
+
+- **Smart contract risk**
     
-    **Historical Context:** Since perpetual listing on Binance in 2019, BTC's largest weekly drop was 33.52%, well below our liquidation threshold.
+    Exposure to vulnerabilities in deployed smart contracts.
+    
+    The strategy involves providing liquidity to Jupiter smart contracts on Solana. These contracts have been deployed at scale and have undergone independent audits, but exposure to vulnerabilities in deployed smart contracts remains a risk factor.
     
     **Controls:**
-    - Automated rebalancing triggers at conservative thresholds
-    - Insurance fund setup
-    - Flexible deployment ratios (30-70, 40-60, 50-50) to balance liquidation thresholds and yield impact
-    - Geographic distribution of infrastructure prevents regional outages from affecting operations
-  </Accordion>
-
-  
-  <Accordion title="Smart Contract Risk">
-    Dependence on Jupiter's smart contracts on Solana introduces potential vulnerabilities.
     
-    **Controls:**
-    - Utilizing battle-tested and audited smart contracts
-    - Comprehensive audits by reputable security firms
-    - Regular code reviews and updates
+    - Deployment limited to audited and widely used contracts with established operational history
+    - Independent third-party audits conducted for each Structured contract release
+    - Ongoing internal code reviews and upgrades
     - Multiple backup execution pathways for critical operations
-  </Accordion>
-  
-  <Accordion title="Exchange Risk">
-    The insolvency of centralized exchange (CEX) hedging platforms could impact undistributed yield.
+    
+
+- **Liquidation risk**
+    
+    The strategy employs short positions in SOL and ETH to offset non-BTC exposure from the JLP basket. Liquidation may occur if the BTC/SOL or BTC/ETH ratio declines by approximately 45% before rebalancing. Since the perpetual listing of BTC on Binance in 2019, the largest recorded weekly decline has been 33.52%, which is below this threshold.
     
     **Controls:**
-    - Principal funds secured off-exchange through dedicated custodians
-    - Using Binance and other top tier exchanges for trading operations (proven track record)
-    - Continuous monitoring of exchange health indicators
-    - Geographic distribution of infrastructure
-  </Accordion>
+    
+    - Automated rebalancing triggers at conservative thresholds
+    - Flexible deployment ratios to balance risk and yield:
+        - **30/70**: liquidation threshold ~45% price decline
+        - **40/60**: liquidation threshold ~66.6%, yield reduced by ~14% compared to 30/70
+        - **50/50**: no liquidation risk, yields reduced by ~28% compared to 30/70
+    - Insurance fund provisions to buffer potential liquidation losses
+    - Geographically distributed infrastructure to mitigate operational concentration
 
-  <Accordion title="Funding Rate Risk">
-    Extremely negative funding rates during market stress could impact returns.
+- **Exchange risk**
+    
+    Reliance on centralized exchanges for hedge execution introduces counterparty risk, including the risk of exchange insolvency.
     
     **Controls:**
-    - Funding rate impact modeled into risk calculations
-    - Position sizing adjustments based on funding rate conditions
-    - Ability to adjust strategy parameters during extreme conditions
-  </Accordion>
-</AccordionGroup>
+    
+    - Principal funds secured off-exchange via Ceffu custody
+    - Only hedge collateral is transferred to Binance for active positions
+    - Use of top-tier exchanges with established track records
+    - Ongoing monitoring of exchange health indicators
+    
+- **Funding rate risk**
+    
+    Unfavorable funding rate environments during periods of market stress may reduce net strategy returns.
+    
+    **Controls:**
+    
+    - Funding rate dynamics incorporated into strategy risk models
+    - Position sizing adjustments during adverse conditions
+    - Parameters adjusted dynamically to mitigate prolonged negative funding environments
 
-## Risk Monitoring Infrastructure
+- **Liquidity and withdrawal risk**
+    
+    The liquidity pool can support withdrawals in the hundreds of millions of USD with slippage of approximately 0.3%. Withdrawals significantly larger than this may result in higher slippage, which can be mitigated through withdrawal scheduling mechanisms and, if required, the application of withdrawal fees.
+    
 
-Our comprehensive risk monitoring system includes:
+## **Risk Monitoring**
 
-1. **Automated Position Monitoring**
-   - Real-time collateral sufficiency checks
-   - Multiple redundant monitoring systems
-   - Geographically distributed infrastructure
-   - Backup execution pathways
+- Automated position monitoring and real-time collateral sufficiency checks
+- Redundant monitoring systems with global distribution
+- Automated failover mechanisms
+- Multi-signature authorization for critical operations
+- Regular infrastructure audits and testing
 
-2. **Rebalancing Automation**
-   - Conservative trigger thresholds
-   - Multiple execution pathways
-   - Automated failover systems
+## **Asset Strategy**
 
-3. **Security Controls**
-   - Multi-signature authorization for critical operations
-   - Regular system audits
-   - Continuous infrastructure testing
-   - Geographic distribution of critical components
+### **Off-exchange custody**
 
-## Asset Strategy
+30% of deposited WBTC is held in custody with Ceffu for hedge collateralization. Transfers between custody and exchanges occur **only when required** for funding obligations or realized P&L.
 
-<CardGroup cols={2}>
-  <Card title="Off-Exchange Custody" icon="vault">
-    30% of deposited WBTC is held in off-exchange custody with Ceffu for potential Binance collateralization. Transfers between custody and exchanges occur ONLY when required for funding obligations or realized P&L.
-  </Card>
-  <Card title="On-Chain Allocation" icon="eye">
-    70% of deposited WBTC is held on-chain as JLP, providing transparent balance verification and asset allocation visibility.
-  </Card>
-</CardGroup>
+### **On-chain allocation**
 
-## Disclaimer
+70% of deposited WBTC is deployed in JLP, providing transparent balance verification and visibility of asset allocation.
 
-<Note>
-This document is for informational purposes only and does not constitute an offer to sell or solicitation to buy any security. Investment in cryptocurrencies and DeFi products involves significant risks, including potential loss of principal. Past performance does not guarantee future results. Investors should conduct their own due diligence and consult financial advisors before making investment decisions.
-</Note>
+*For a full description of allocation and workflow, see [JLP BTC Neutral Strategy](/strategy/overview).*
+
+<Info>
+*DISCLAIMER: This document is for informational purposes only and does not constitute an offer to sell or solicitation to buy any security. Investment in cryptocurrencies and DeFi products involves significant risks, including potential loss of principal. Past performance does not guarantee future results. Investors should conduct their own due diligence and consult financial advisors before making investment decisions.*
+</Info>

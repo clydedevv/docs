@@ -1,36 +1,37 @@
 ---
 title: "Liquidity Model"
 icon: "droplet"
-description: "How maxBTC's automated withdrawals with guaranteed processing times enable full composability"
+description: "How maxBTC functions as a composable asset across DeFi"
 ---
 
-Liquidity is a cornerstone of maxBTC's design. Unlike traditional BTC vaults with manual processes and unpredictable exit windows, maxBTC features fully automated withdrawals with guaranteed processing times - the foundation that enables all advanced liquidity features.
+maxBTC is designed around liquidity as its core capability. There are three components of liquidity that are supported by maxBTC's design:
 
-<img src="/images/day1Defi.png" alt="Full DeFi Ecosystem on Day 1" className="w-full rounded-lg mb-4" />
+- **Short deposit and withdrawal times** of the underlying strategies due to full automation across smart contract, custody, and CEX perps markets components. These are critical for enabling efficient DEX arbitrage and peg protection for maxBTC.
+- **In-protocol liquidations** using instant withdrawals of the underlying strategies and protocol's liquidity buffer in the future. Critical for the lending markets, this feature enables higher lending caps for maxBTC and increased usability as collateral.
+- **Secondary DEX liquidity** enables instant exit from a maxBTC position. maxBTC price on a DEX can be maintained around the redemption rate ('peg protection') due to the short withdrawal period.
 
-**Full DeFi ecosystem from day one** - maxBTC launches with complete liquidity infrastructure including market makers, vault managers, lending integrations, and cross-chain accessibility.
+# maxBTC in DeFi
 
-## Exit Options
+maxBTC liquidity enables the following DeFi use cases:
 
-maxBTC provides three ways to exit your position:
+- **Lending collateral**
+    
+    High liquidation capacity allows lending markets to treat maxBTC as reliable collateral.
+    
+- **High-yield strategies**
+    
+    Supports advanced use cases such as looping through external lending integrations.
+    
+- **Consumer facing BTC products**
+    
+    Due to predictable withdrawal time, maxBTC is a perfect asset for BTC yield products.
+    
 
-1. **Instant DEX Trading**: Trade on decentralized exchanges like Duality for immediate exit
-2. **Standard Redemption**: Redeem for underlying BTC assets with minimal fees  
-3. **In-Protocol Liquidation**: Automated underlying BTC redemption through limit orders and cross-chain routing
+# **Exit Options**
 
-## What Makes This Unique
+maxBTC provides three ways to exit a position:
 
-maxBTC's exit mechanisms enable true DeFi composability, unlocking tangible benefits for users:
-
-- **Predictable withdrawal times and costs** - No uncertainty around exit timing or fees
-- **Instant DEX liquidity** - Trade immediately when market opportunities arise  
-- **Leveraged looping strategies** - Use maxBTC with lending protocols to amplify BTC exposure
-- **Universal collateral** - Deploy maxBTC as collateral across lending protocols and perps trading
-- **Higher LTV ratios** - In-protocol liquidations enable lending protocols to offer better terms
-
-Built for composability from day one, maxBTC transforms how users interact with BTC in DeFi - from simple holding to sophisticated yield and leverage strategies.
-
-<Note>
-  For detailed technical architecture including the minting contract implementation, see our <a href="/technical/architecture" className="text-amber-600 hover:text-amber-500 font-medium">System Architecture</a> documentation.
-</Note>
+1. **Redemption:** direct redemption for underlying BTC assets with a guaranteed time
+2. **In-protocol liquidation:** exclusive access to instant liquidations for DeFi partners such as lending protocols
+3. **DEX swap:** instant exit via a DEX pair
 

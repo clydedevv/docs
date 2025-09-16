@@ -1,81 +1,89 @@
 ---
 title: "JLP BTC Neutral Strategy"
 icon: "chart-line"
-description: "Complete overview and technical implementation of maxBTC's flagship yield strategy"
+description: "Complete overview and technical implementation of maxBTC's first underlying strategy"
 ---
 
-maxBTC generates yield from Jupiter's JLP pool while maintaining pure BTC exposure through hedging positions on Binance, delivering approximately 10% APY based on historical performance.
+The JLP BTC Neutral strategy generates BTC-denominated yield from trader activity in the Jupiter Liquidity Provider (JLP) pool, while neutralizing non-BTC exposure through perpetual hedging positions on centralized exchanges.
 
-## Strategy Workflow
+## **Key metrics**
 
-The JLP BTC Neutral strategy deploys capital in a 70/30 split:
+- **Expected return:** 5%-10% BTC-denominated APY
+- **Launch:** December 2024
+- **Strategy capacity:** Designed for $1B+ at current allocation
+- **Risk profile:** Market-neutral with delta hedging
+- **Primary yield source:** Jupiter JLP pool fee participation (75% of pool fees)
+- **Execution platform:** Jupiter (Solana) + Binance (hedging)
+- **Custody:** Ceffu (institutional custody)
 
-<img src="/images/howMaxBTCWorks.png" alt="JLP BTC Neutral Strategy Flow" className="w-full rounded-lg my-4" />
+**Income sources**
 
-<CardGroup cols={2}>
-  <Card title="70% to Jupiter JLP Pool" icon="coins" iconType="duotone">
-    Capital is deployed to a mix of SOL, ETH, BTC, USDC, and USDT in the pool
-    - Generates yield through trading fees, liquidations, and price impact
-    - Automatically compounds returns within the pool
+The JLP pool distributes 75% of trading fees to liquidity providers. These include opening/closing fees, borrowing fees, trading fees, and liquidations.
+
+**BTC denomination**
+
+Perpetual futures hedging on Binance offsets SOL and ETH exposure in the pool while keeping the strategy effectively 1× long BTC.
+
+**Ecosystem**
+
+The strategy is built on Jupiter, Solana's main perpetual DEX, which runs with deep liquidity and consistent fee flows.
+
+# **Strategy Implementation**
+
+### Capital Deployment
+
+1. **BTC receipt:** Capital flows into Ceffu institutional custody in BTC/WBTC.
+2. **Asset allocation:**
+    - 70% → Jupiter JLP Pool (mix of SOL, ETH, WBTC, USDC, USDT)
+    - 30% → Binance collateral (held with Ceffu for hedging operations)
+
+<Frame>
+<img src="/images/howMaxBTCWorks.png" alt="JLP BTC Neutral Strategy Flow" />
+</Frame>
+
+### **Delta-neutral positioning**
+
+- Short SOL perpetuals to eliminate SOL exposure
+- Short ETH perpetuals to eliminate ETH exposure
+- Leveraged long BTC to maintain effective 1× BTC exposure
+- Positions rebalanced regularly to track JLP composition changes
+
+### **Yield generation**
+
+- **Primary yield source:** JLP pool fees (75% of trading fees):
+    - Opening/closing
+    - Borrowing
+    - Protocol fees
+    - Liquidations
+- **Rebalancing alpha:** Additional yield from dynamic hedge adjustments
+- **Funding rate management:** Costs typically in the -1% to -4% range, occasionally positive
+
+# Risk Management
+
+- Automated rebalancing systems maintain delta-neutral exposure
+- 70% fund in a smart contract
+- Approximately, 30% collateral in Ceffu and 24hr settlement insures only collateral required for hedging transferred to Binance
+
+# **Historical Performance**
+
+- **Private Beta Performance:** 5%-10% BTC-denominated APY (June 2025)
+- **Market conditions:** Performance typically improves during volatile periods as trading fees increase
+
+<Frame caption="APY and performance figures are based on historical data and are provided for informational purposes only.">
+<img src="/images/historical-performance.png" alt="Historical Performance" />
+</Frame>
+
+*Real-time share price and strategy metrics are available at [insights.structured.money](http://insights.structured.money).*
+
+# **Strategy Advantages**
+
+| **Market-Neutral** | Delta-hedged structure preserving BTC denomination. |
+| --- | --- |
+| **Automated Rebalancing** | Hedge positions adjust to reflect pool composition and trader flows. |
+| **Volatility Capture** | Benefits from higher trading activity during market swings. |
+| **Sustainable Yield Source** | Derived from trading flows and protocol fees, not emissions. |
+| **Liquidation Benefits** | Nine-digit US Dollar values can be liquidated without moving the market. |
+
+<Card title="Risk & Controls" href="/strategy/risks">
+For a comprehensive analysis of all risk factors and control mechanisms, see our detailed Risk Management Framework.
   </Card>
-  
-  <Card title="30% to Hedging Positions" icon="shield-halved" iconType="duotone">
-    Used as collateral at centralized venues (Binance) to:
-    - Short ETH, SOL to neutralize non-BTC exposure
-    - Leverage long BTC to maintain effective 1:1 BTC price exposure
-  </Card>
-</CardGroup>
-
-
-## Historical Performance
-
-Over a conclusive three-month live test run beginning on December 24, the strategy delivered an average 20% APY in real-world conditions, validating our expected performance range.
-
-<img src="/images/historical-performance.png" alt="Historical Performance" className="w-full rounded-lg my-4" />
-
-## APY Breakdown
-
-<img src="/images/strategyAPYBreakdown.png" alt="Strategy APY Breakdown" className="w-full rounded-lg my-4" />
-
-<div className="space-y-2 mb-6">
-  <div className="flex items-start gap-3 text-sm">
-    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
-    <span><strong>Expected APY Range</strong>: 10-20% depending on market conditions</span>
-  </div>
-  <div className="flex items-start gap-3 text-sm">
-    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
-    <span><strong>Strategy Capacity</strong>: $500M</span>
-  </div>
-  <div className="flex items-start gap-3 text-sm">
-    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
-    <span><strong>Pool Yield</strong>: 5-40% JLP pool yield converted to BTC with 0-4% funding rate cost</span>
-  </div>
-  <div className="flex items-start gap-3 text-sm">
-    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0 mt-2"></div>
-    <span><strong>Market Conditions</strong>: Performance typically improves during market crashes due to increased DEX fees</span>
-  </div>
-</div>
-
-## Strategy Advantages
-
-<CardGroup cols={2}>
-  <Card title="Market-Neutral Design" icon="scale-balanced" iconType="duotone">
-    The strategy is deliberately designed to be neutral to all market movements except BTC, maintaining an effective 1x long BTC position regardless of market conditions.
-  </Card>
-  
-  <Card title="Automated Rebalancing" icon="arrows-rotate" iconType="duotone">
-    Positions are automatically rebalanced to accurately reflect changes in the JLP pool composition and the net open position of all traders.
-  </Card>
-
-  <Card title="Capture of Market Volatility" icon="chart-line-up" iconType="duotone">
-    The strategy actually benefits from market volatility through increased trading fees in the Jupiter pool and higher opportunities for rebalancing arbitrage.
-  </Card>
-  
-  <Card title="Sustainable Yield Source" icon="infinity" iconType="duotone">
-    Unlike points-based rewards or temporary incentives, this yield comes from real trading activity that are inherent to crypto markets.
-  </Card>
-</CardGroup>
-
-<Note>
-  For a comprehensive analysis of all risk factors and control mechanisms, see our detailed <a href="/strategy/risks" className="text-amber-600 hover:text-amber-500 font-medium">Risk Management Framework</a>.
-</Note>

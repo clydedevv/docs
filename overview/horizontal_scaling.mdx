@@ -1,45 +1,32 @@
 ---
 title: "Horizontal Scaling"
 icon: "layer-group"
-description: "How maxBTC achieves infinite scalability across strategies and chains"
+description: "How maxBTC achieves scalability without splitting liquidity across multiple tokens"
 ---
 
-Unlike traditional BTC yield products that are limited by strategy capacity, maxBTC is designed for horizontal scaling across multiple strategies and chains, enabling virtually unlimited growth potential.
+# **Architecture**
 
-## The Scaling Problem
+**One asset, infinite strategies.**
 
-<CardGroup cols={3}>
-  <Card title="Strategy Saturation" icon="gauge-high">
-    Single strategies (e.g. vaults) quickly reach capacity limits
-  </Card>
-  
-  <Card title="Chain Constraints" icon="link-slash">
-    Solutions limited to one blockchain cannot tap into cross-chain opportunities
-  </Card>
-  
-  <Card title="Network Fragmentation" icon="puzzle-piece">
-    Multiple tokens for different strategies fragment liquidity and reduce utility
-  </Card>
-</CardGroup>
+maxBTC achieves horizontal scaling by maintaining a single liquid asset while distributing risk and yield generation across multiple underlying strategies. This layered design allows strategies with different profiles to be added while keeping all liquidity unified in maxBTC.
 
-## Single Asset, Infinite Strategies Architecture
+- **Single minting contract**: maxBTC is minted through one contract, with each strategy contributing to the same liquid asset
+- **Unified liquidity**: each strategy outputs the same maxBTC token, concentrating liquidity in a single market
+- **Modular vaults**: strategies can be added independently, with returns aggregated into maxBTC
 
-**Unified Asset, Multiple Strategies**
+<Frame>
+<img src="/images/simplified_horizontal_scaling.jpeg" alt="Simplified horizontal scaling architecture" />
+</Frame>
 
-maxBTC maintains a single liquid asset while distributing risk and yield generation across multiple underlying strategies:
+## **How it works**
 
-- JLP BTC Neutral & Future Perps Based strategies ($500M+ capacity)
-- Future TradFi strategies ($100B+ potential)
-- External vault providers & strategy managers
+The minting contract forms the core of the scaling approach, coordinating multiple vaults through a standardized interface:
 
-<img src="/images/maxBTCmintingContract.png" alt="maxBTC Minting Contract Architecture" className="w-full rounded-lg mb-6" />
+- **Single point of entry**: one minting path for maxBTC across all strategies
+- **Vault allocation**: user deposits are allocated into the selected strategy
+- **Yield aggregation**: strategy performance flows back into the same maxBTC token
+- **Unified DEX liquidity**: deeper markets in a single asset rather than fragmented tokens
 
-**How It Works**
-
-The maxBTC minting contract forms the core of our horizontal scaling approach, creating powerful network effects through a unified architecture:
-
-- **Single Point of Entry**: All maxBTC tokens originate from one central minting contract, managing multiple underlying vaults through a standardized interface
-- **Unified DEX Liquidity**: Concentrates liquidity in a single asset rather than fragmenting across multiple tokens, creating deeper markets
-- **Optimized Capital Allocation**: Automatically distributes capital across strategies based on yield and risk parameters
-- **DeFi Integrations**: Simplifies integration across lending platforms, yield aggregators, and other DeFi protocols
-- **Modular Vault Architecture**: Each yield strategy operates as an independent vault that can exist on any chain while contributing to the same maxBTC token
+<Card title="Next: Liquidity Model" href="/overview/liquidity">
+How maxBTC functions as a composable asset across DeFi.
+</Card>
