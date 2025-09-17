@@ -42,7 +42,7 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="Why is KYC required to mint and redeem maxBTC?">
-    KYC is required to ensure compliance with anti-money laundering (AML) laws and regulations. Because minting and redeeming involve direct interaction with Structured's vaults, verification protects both participants and the protocol by ensuring assets are not used for illicit purposes. Individuals can complete KYC through zkMe with ID and proof of address, while entities can onboard through manual verification with the Structured team.
+    KYC is required to ensure compliance with anti-money laundering (AML) laws and regulations. Because minting and redeeming involve direct interaction with Structured's vaults, verification protects both participants and the protocol by ensuring assets are not used for illicit purposes. Individuals can complete KYC through [zkMe](https://www.zk.me/faq-list) with ID and proof of address, while entities can onboard through manual verification with the [Structured team](https://t.me/Structured_Contact).
   </Accordion>
 </AccordionGroup>
 
@@ -164,14 +164,64 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="How can I participate in the vaults?">
-    Complete KYC via zkMe, deposit WBTC from Ethereum into a vault, and wait for deployment once the cap is reached. At that point, you'll receive maxBTC on Neutron and begin earning BTC-denominated yield.
+    **Minting Vault**
+    
+    1. Go to [structured.money/vaults](https://structured.money/vaults) and select the **maxBTC Minting Vault**
+    2. Connect an Ethereum wallet
+    3. Follow the steps to complete KYC via third-party provider zkMe
+    4. Deposit WBTC from Ethereum into the maxBTC Minting Vault
+    5. Deposits queue until the 500 BTC cap is hit
+    6. At fund deployment depositors earn sustainable real BTC yield via maxBTC
+    
+    **Liquidity Vault**
+    
+    1. Go to structured.money/vaults and select the maxBTC Liquidity Vault
+    2. Connect an Ethereum wallet
+    3. Follow the steps to complete KYC via third-party provider zkMe
+    4. Deposit **WBTC** **on Ethereum** into the maxBTC Liquidity Vault
+    5. Deposits queue until the 500 BTC cap is hit
+    6. At fund deployment depositors earn sustainable real BTC yield via maxBTC and Supervault market-making fees
+    
+    The maxBTC Minting Vault and Liquidity Vault are also accessible directly via [app.neutron.org/bitcoin-summer](http://app.neutron.org/bitcoin-summer)
   </Accordion>
 
   <Accordion title="Is KYC required to participate?">
-    Structured is a centralized entity and complies with applicable AML laws and regulations. All participants must complete KYC to participate in this phase and access the vaults.
+    While maxBTC is non-custodial DeFi, Structured is a centralized entity and complies with applicable AML laws and regulations. All participants must complete KYC to participate in this phase and access the vaults.
     
     - **Individuals:** Onboard via zkMe by submitting ID and proof of address.
-    - **Entities:** [Contact the Structured team](https://t.me/Structured_EarlyAccess) directly for manual verification.
+    - **Entities:** [Contact the Structured team](https://t.me/Structured_Contact) directly for manual verification.
+  </Accordion>
+
+  <Accordion title="What documents are required to complete KYC?">
+    You will need to verify your ID and provide proof of address. This verification is performed through zkMe and packaged into a Zero-Knowledge Proof to preserve privacy.
+    
+    For more information, see zkMe's FAQ: https://www.zk.me/faq-list
+  </Accordion>
+
+  <Accordion title="How do I complete KYC?">
+    To start KYC for maxBTC:
+    
+    1. Go to the vault you'd like to deposit into.
+    2. Connect your Ethereum wallet.
+    3. Enter the amount you want to deposit and click **Submit KYC**.
+    
+    Verification is handled directly by **zkMe** on your phone in three simple steps:
+    
+    1. **Pick from a list of credentials** – choose the type of ID you want to use (e.g. passport, driver's license, national ID).
+    2. **Generate a zero-knowledge proof** – zkMe processes your ID locally on your device and packages it into a proof to preserve privacy.
+    3. **Wait for your Soulbound Token to be minted** – this links your verification to your wallet. You can leave the page while this completes; you'll be notified once it's done.
+    
+    Once the process is complete, the vault interface will display **KYC passed**, and you can proceed with your deposit.
+    
+    For more information, see zkMe's FAQ: https://www.zk.me/faq-list
+  </Accordion>
+
+  <Accordion title="Why didn't I pass the KYC?">
+    If your KYC with zkMe is not approved, you'll see the reason instantly (for example, expired ID, unclear photo, or mismatched details). For more information, see zkMe's FAQ: https://www.zk.me/faq-list
+  </Accordion>
+
+  <Accordion title="If my KYC got rejected, can I try again?">
+    Yes. You can resubmit your KYC with updated documents or corrected information. For guidance, see zkMe's FAQ: https://www.zk.me/faq-list
   </Accordion>
 
   <Accordion title="If I don't want or can't do KYC, can I still access maxBTC?">
