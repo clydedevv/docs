@@ -44,7 +44,21 @@
           "introduction",
           "overview/horizontal_scaling",
           "overview/liquidity",
-          "overview/points"
+          "overview/points",
+          {
+            "group": "Legal Documentation",
+            "icon": "scale-balanced",
+            "pages": [
+              "legal/index",
+              "legal/disclaimers-and-risks-notice",
+              "legal/mint-user-agreement",
+              "legal/privacy-notice",
+              "legal/terms-and-conditions",
+              "legal/risk-disclosure-statement",
+              "legal/points-program-disclaimer",
+              "legal/privacy-policy"
+            ]
+          }
         ]
       },
       {
