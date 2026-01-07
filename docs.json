@@ -42,7 +42,6 @@
         "group": "Overview",
         "pages": [
           "introduction",
-          "overview/horizontal_scaling",
           "overview/liquidity",
           "overview/points",
           {
